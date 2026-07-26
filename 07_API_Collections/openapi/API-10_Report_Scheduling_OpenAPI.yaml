@@ -1,0 +1,65 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Report Scheduling
+  version: v1
+  description: OpenAPI skeleton for API-10 Report Scheduling and Exports (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Report Scheduling
+paths:
+  /reports:
+    post:
+      tags: [Report Scheduling]
+      summary: Schedule Report
+      operationId: reports_schedule
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /reports/{report_id}/status:
+    get:
+      tags: [Report Scheduling]
+      summary: Get Report Status
+      operationId: reports_get_status
+      parameters:
+        - name: report_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

@@ -1,0 +1,1958 @@
+{
+  "info": {
+    "name": "Digitize_API_v1_populated",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "API-01_Platform_Administration",
+      "item": [
+        {
+          "name": "GET /platform/settings",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/platform/settings"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /platform/master-data",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/platform/master-data"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /platform/feature-flags",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/platform/feature-flags"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /platform/maintenance",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/platform/maintenance"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-02_Organization_Facility_Site",
+      "item": [
+        {
+          "name": "POST /organizations",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/organizations"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Acme Corp\",\n  \"address\": \"1 Example St\",\n  \"contact_email\": \"admin@acme.example\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "PATCH /organizations/{organization_id}",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/organizations/{organization_id}"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Acme Corp\",\n  \"address\": \"1 Example St\",\n  \"contact_email\": \"admin@acme.example\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /facilities",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/facilities"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /sites",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/sites"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-03_Identity_User_Role",
+      "item": [
+        {
+          "name": "POST /identity/staff-accounts",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/identity/staff-accounts"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "PATCH /identity/staff-profiles/{staff_profile_id}",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/identity/staff-profiles/{staff_profile_id}"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /identity/role-assignments",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/identity/role-assignments"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-04_Customer_Management",
+      "item": [
+        {
+          "name": "POST /customers",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/customers"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Doe\",\n  \"email\": \"jane.doe@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /customers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/customers"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /customers/{customer_id}",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/customers/{customer_id}"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-05_Membership_Management",
+      "item": [
+        {
+          "name": "GET /membership-plans",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/membership-plans"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /memberships",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/memberships"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_id\": \"{{customer_id}}\",\n  \"plan_id\": \"basic\",\n  \"start_date\": \"2026-01-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /memberships/{membership_id}/freeze",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/memberships/{membership_id}/freeze"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_id\": \"{{customer_id}}\",\n  \"plan_id\": \"basic\",\n  \"start_date\": \"2026-01-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-06_Attendance_Walkin",
+      "item": [
+        {
+          "name": "POST /attendance/check-in",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/attendance/check-in"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /attendance/eligibility",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/attendance/eligibility"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /walkin-visits",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/walkin-visits"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-07_Sales_Transactions",
+      "item": [
+        {
+          "name": "POST /sales/transactions",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/sales/transactions"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_id\": \"{{customer_id}}\",\n  \"items\": [\n    {\n      \"product_id\": \"sku-123\",\n      \"quantity\": 1\n    }\n  ],\n  \"total\": 100.0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /sales/transactions/{transaction_id}",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/sales/transactions/{transaction_id}"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-08_Payment_Gateway",
+      "item": [
+        {
+          "name": "POST /payments/initiate",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/payments/initiate"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 100.0,\n  \"currency\": \"USD\",\n  \"method\": \"card\",\n  \"card\": {\n    \"number\": \"4111111111111111\",\n    \"expiry\": \"12/26\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /payments/{payment_id}/status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/payments/{payment_id}/status"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-09_Promotions_Discounts",
+      "item": [
+        {
+          "name": "GET /promotions",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/promotions"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /discounts/apply",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/discounts/apply"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-10_Report_Scheduling",
+      "item": [
+        {
+          "name": "POST /reports",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/reports"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"report_type\": \"sales_summary\",\n  \"from\": \"2026-01-01\",\n  \"to\": \"2026-01-31\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /reports/{report_id}/status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/reports/{report_id}/status"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-11_Inventory_Products",
+      "item": [
+        {
+          "name": "GET /products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/products"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /products",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/products"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"sku-123\",\n  \"name\": \"Sample Product\",\n  \"price\": 9.99\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "PATCH /products/{product_id}/stock",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/products/{product_id}/stock"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-12_Catalogue",
+      "item": [
+        {
+          "name": "GET /catalogue/items",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/catalogue/items"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /catalogue/items/{item_id}",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/catalogue/items/{item_id}"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-13_Loyalty_Rewards",
+      "item": [
+        {
+          "name": "GET /loyalty/accounts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/loyalty/accounts"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /loyalty/accounts/{account_id}/points",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/loyalty/accounts/{account_id}/points"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-14_Common_Reference",
+      "item": [
+        {
+          "name": "GET /references/{reference_type}",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/references/{reference_type}"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /references/{reference_type}/{code}",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/references/{reference_type}/{code}"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-15_Workforce_Scheduling",
+      "item": [
+        {
+          "name": "GET /schedules",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/schedules"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "POST /schedules",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/schedules"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-16_Notifications_Alerts",
+      "item": [
+        {
+          "name": "POST /notifications",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/notifications"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /alerts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/alerts"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-17_Traceability",
+      "item": [
+        {
+          "name": "GET /traceability/matrix",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/traceability/matrix"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-18_Audit_Logs",
+      "item": [
+        {
+          "name": "GET /audit/logs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/audit/logs"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-19_Error_Catalog",
+      "item": [
+        {
+          "name": "GET /errors",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/errors"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-20_API_Change_Log",
+      "item": [
+        {
+          "name": "GET /changelog",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/changelog"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-21_Governance",
+      "item": [
+        {
+          "name": "GET /governance/policies",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/governance/policies"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-22_Testing_Contracts",
+      "item": [
+        {
+          "name": "GET /testing/contracts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/testing/contracts"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-23_Integration_Contracts",
+      "item": [
+        {
+          "name": "GET /integrations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/integrations"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /integrations/{integration_id}/health",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/integrations/{integration_id}/health"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-24_Exports_Analytics",
+      "item": [
+        {
+          "name": "POST /exports",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/exports"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GET /analytics/reports",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/analytics/reports"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-25_Operational_Metrics",
+      "item": [
+        {
+          "name": "GET /metrics",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/metrics"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-26_Health_Checks",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/{{api_version}}/health"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "X-Organization-ID",
+                "value": "{{organization_id}}"
+              },
+              {
+                "key": "X-Facility-ID",
+                "value": "{{facility_id}}"
+              },
+              {
+                "key": "X-Site-ID",
+                "value": "{{site_id}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

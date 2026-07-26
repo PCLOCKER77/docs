@@ -1,0 +1,39 @@
+{
+  "info": {
+    "_postman_id": "digitize-api-v1-template",
+    "name": "Digitize API v1 - Design Draft (Template)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "0.1"
+  },
+  "item": [
+    { "name": "00 Collection Setup", "item": [] },
+    { "name": "01 Platform Administration", "item": [] },
+    { "name": "02 Organization Facility Site", "item": [] },
+    { "name": "03 Identity User Role", "item": [] },
+    { "name": "04 Customer Management", "item": [] },
+    { "name": "05 Membership Management", "item": [] },
+    { "name": "06 Attendance Walk-in", "item": [] },
+    { "name": "07 Trainer Activity Batch", "item": [] },
+    { "name": "08 Billing Payment", "item": [] },
+    { "name": "09 Subscription License", "item": [] },
+    { "name": "10 Notification Campaign", "item": [] },
+    { "name": "11 Reports Analytics", "item": [] },
+    { "name": "12 Support Ticket", "item": [] },
+    { "name": "13 Audit Security", "item": [] },
+    { "name": "14 Common Reference", "item": [] },
+    { "name": "15 Environment Validation", "item": [] },
+    { "name": "16 Reusable Test Scenarios", "item": [] },
+    { "name": "17 Traceability Checks", "item": [] },
+    { "name": "18 Webhook Validation", "item": [] },
+    { "name": "19 Error Code Validation", "item": [] },
+    { "name": "20 Change Governance Checks", "item": [] },
+    { "name": "21 OpenAPI Governance Checks", "item": [] },
+    { "name": "22 Frontend Consumption Checks", "item": [] },
+    { "name": "23 Access Control Checks", "item": [] },
+    { "name": "24 State Workflow Checks", "item": [] },
+    { "name": "25 Mocking Sandbox Checks", "item": [] },
+    { "name": "26 Release Readiness Checks", "item": [] }
+  ],
+  "event": [],
+  "variable": []
+}

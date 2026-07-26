@@ -1,0 +1,58 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Workforce Scheduling
+  version: v1
+  description: OpenAPI skeleton for API-15 Workforce Scheduling (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Workforce Scheduling
+paths:
+  /schedules:
+    get:
+      tags: [Workforce Scheduling]
+      summary: List Schedules
+      operationId: schedules_list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+    post:
+      tags: [Workforce Scheduling]
+      summary: Create Schedule
+      operationId: schedules_create
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

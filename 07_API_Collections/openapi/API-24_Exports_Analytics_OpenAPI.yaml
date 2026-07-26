@@ -1,0 +1,59 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Exports and Analytics
+  version: v1
+  description: OpenAPI skeleton for API-24 Exports and Analytics (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Exports Analytics
+paths:
+  /exports:
+    post:
+      tags: [Exports Analytics]
+      summary: Start Export Job
+      operationId: exports_start_job
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /analytics/reports:
+    get:
+      tags: [Exports Analytics]
+      summary: List Analytics Reports
+      operationId: analytics_list_reports
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

@@ -1,0 +1,30 @@
+{
+  "brand": {
+    "primary": "#0B63CE",
+    "primary-600": "#0952A0",
+    "secondary": "#00A991",
+    "accent": "#FFB020",
+    "success": "#0F9D58",
+    "warning": "#F6C85F",
+    "danger": "#D7263D",
+    "neutral-900": "#111827",
+    "neutral-700": "#374151",
+    "neutral-500": "#6B7280",
+    "neutral-100": "#F3F4F6"
+  },
+  "typography": {
+    "font-family-base": "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+    "h1": "32px",
+    "h2": "24px",
+    "h3": "20px",
+    "body": "16px",
+    "caption": "12px"
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px"
+  }
+}

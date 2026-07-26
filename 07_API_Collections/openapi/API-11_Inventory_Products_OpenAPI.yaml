@@ -1,0 +1,76 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Inventory and Products
+  version: v1
+  description: OpenAPI skeleton for API-11 Inventory and Products (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Inventory Products
+paths:
+  /products:
+    get:
+      tags: [Inventory Products]
+      summary: List Products
+      operationId: products_list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+    post:
+      tags: [Inventory Products]
+      summary: Create Product
+      operationId: products_create
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /products/{product_id}/stock:
+    patch:
+      tags: [Inventory Products]
+      summary: Update Stock Level
+      operationId: products_update_stock
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

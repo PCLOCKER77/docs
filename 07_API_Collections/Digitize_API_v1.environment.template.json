@@ -1,0 +1,17 @@
+{
+  "id": "digitize-api-v1-environment-template",
+  "name": "Digitize API v1 - Environment Template",
+  "values": [
+    { "key": "base_url", "value": "https://api.qa.digitize.example", "type": "text" },
+    { "key": "api_version", "value": "v1", "type": "text" },
+    { "key": "access_token", "value": "", "type": "secret" },
+    { "key": "refresh_token", "value": "", "type": "secret" },
+    { "key": "organization_id", "value": "", "type": "text" },
+    { "key": "facility_id", "value": "", "type": "text" },
+    { "key": "site_id", "value": "", "type": "text" },
+    { "key": "correlation_id", "value": "00000000-0000-4000-8000-000000000099", "type": "text" },
+    { "key": "idempotency_key", "value": "", "type": "text" }
+  ],
+  "timestamp": 0,
+  "synced": false
+}

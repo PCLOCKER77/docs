@@ -1,0 +1,183 @@
+# Decision Records Documentation
+
+> Cross-folder decision records, rationale, alternatives, consequences, and traceability for Digitize by OreeOn Technologies Pvt. Ltd.
+
+---
+
+# 1. Purpose
+
+This folder preserves major decisions made across the Digitize documentation set.
+
+Decision Records explain what was decided, why it was decided, what alternatives were considered, what tradeoffs were accepted, and which documentation areas are affected.
+
+This folder supports future architecture review, onboarding, audit review, implementation planning, and controlled change management.
+
+---
+
+# 2. Scope
+
+This folder covers:
+
+- Product decisions.
+- Architecture decisions.
+- Documentation governance decisions.
+- Platform hierarchy decisions.
+- Engineering baseline decisions.
+- Release governance decisions.
+- Cross-folder ownership decisions.
+- Supersession and decision-change history.
+
+---
+
+# 3. Out of Scope
+
+This folder does not define:
+
+- Product requirements.
+- Business process details.
+- Database schema definitions.
+- API endpoint catalogs.
+- Integration behavior.
+- UI screen layouts.
+- Backend implementation details.
+- Deployment runbooks.
+- Test execution.
+- Operational procedures.
+- Release notes.
+
+Those artifacts remain owned by their respective documentation folders.
+
+---
+
+# 4. Folder Position
+
+```text
+01_Product_Foundation/
+02_Commercial_Strategy/
+03_Business_Analysis/
+04_Functional_Requirements/
+05_Technical_Architecture/
+06_Database_Design/
+07_API_Collections/
+08_Integration_Contracts/
+09_UI_UX_Design/
+10_Backend_Engineering/
+11_Deployment/
+12_Testing/
+13_Operations/
+14_Release_Management/
+15_Release_Notes/
+16_Development_Readiness/
+99_Decision_Records/
+```
+
+Decision Records sits outside the normal delivery sequence.
+
+It does not replace folder-level standards. It records decisions that materially affect multiple folders or long-term governance.
+
+---
+
+# 5. Relationship with Existing Decision Documents
+
+| Existing Document | Relationship |
+|---|---|
+| `00_Project_Management/Decision_Log.md` | Product and project decision register |
+| `05_Technical_Architecture/TA-10_Architecture_Decision_Records.md` | Architecture decision index for technical architecture |
+| `99_Decision_Records/` | Cross-folder decision records with rationale, consequences, and traceability |
+
+The existing decision log and TA-10 may remain as source or index documents.
+
+This folder provides detailed cross-folder records for decisions that need durable governance.
+
+---
+
+# 6. Folder Structure
+
+```text
+99_Decision_Records/
+├── README.md
+├── DR-00_Decision_Record_Standards.md
+├── DR-Template_Decision_Record_Template.md
+├── DR-001_Documentation_Folder_Hierarchy.md
+├── DR-002_Governing_Document_Per_Folder.md
+├── DR-003_Release_Management_Folder_Addition.md
+├── DR-004_Platform_Tenant_Hierarchy.md
+├── DR-005_Backend_FastAPI_Baseline.md
+├── DR-006_PostgreSQL_Database_Baseline.md
+├── DR-007_SQLAlchemy_Alembic_Data_Access_Baseline.md
+├── DR-008_Redis_Cache_Baseline.md
+├── DR-009_Celery_Background_Worker_Baseline.md
+├── DR-010_Kubernetes_Compatible_Container_Deployment_Baseline.md
+├── DR-011_HashiCorp_Vault_Secrets_Management_Baseline.md
+├── DR-012_GitHub_Actions_CI_CD_Baseline.md
+├── DR-013_OpenTelemetry_Prometheus_Grafana_Observability_Baseline.md
+├── DR-014_S3_Compatible_Object_Storage_File_Scanning_Baseline.md
+├── DR-015_Flutter_Hybrid_Frontend_Baseline.md
+├── DR-016_AWS_Cloud_Provider_Baseline.md
+└── DR-017_Modular_Monolith_Baseline.md
+```
+
+---
+
+# 7. Document Register
+
+| Document ID | Document Name | Status | Purpose |
+|---|---|---|---|
+| README | Decision Records Documentation | Review Draft | Defines folder scope, boundaries, structure, and governance |
+| DR-00 | Decision Record Standards | Design Draft | Defines common standards for decision records |
+| DR-Template | Decision Record Template | Design Draft | Provides the reusable decision-record template |
+| DR-001 | Documentation Folder Hierarchy | Design Draft | Records the approved documentation hierarchy decision |
+| DR-002 | Governing Document Per Folder | Design Draft | Records the folder governance model |
+| DR-003 | Release Management Folder Addition | Design Draft | Records the decision to add Release Management before Release Notes |
+| DR-004 | Platform Tenant Hierarchy | Design Draft | Records the Platform to Organization to Facility to Site hierarchy |
+| DR-005 | Backend FastAPI Baseline | Design Draft | Records the backend framework and baseline technology decision |
+| DR-006 | PostgreSQL Database Baseline | Accepted | Records PostgreSQL as the database implementation baseline |
+| DR-007 | SQLAlchemy and Alembic Data Access Baseline | Accepted | Records ORM and migration framework baseline |
+| DR-008 | Redis Cache Baseline | Accepted | Records Redis as the runtime cache baseline |
+| DR-009 | Celery Background Worker Baseline | Accepted | Records Celery as the background worker baseline |
+| DR-010 | Kubernetes-Compatible Container Deployment Baseline | Accepted | Records containerized deployment and orchestration baseline |
+| DR-011 | HashiCorp Vault Secrets Management Baseline | Accepted | Records secrets-management baseline |
+| DR-012 | GitHub Actions CI/CD Baseline | Accepted | Records CI/CD orchestration baseline |
+| DR-013 | OpenTelemetry, Prometheus, and Grafana Observability Baseline | Accepted | Records observability tooling baseline |
+| DR-014 | S3-Compatible Object Storage and File Scanning Baseline | Accepted | Records object storage and malware scanning baseline |
+| DR-015 | Flutter Hybrid Frontend Baseline | Accepted | Records Flutter as the web, Android, and iOS frontend baseline |
+| DR-016 | AWS Cloud Provider Baseline | Accepted | Records AWS as the cloud provider baseline |
+| DR-017 | Modular Monolith Baseline | Accepted | Records modular monolith as the initial backend architecture style |
+
+---
+
+# 8. Decision Record Principles
+
+Decision Records follow these principles:
+
+- Decisions are explicit.
+- Rationale is preserved.
+- Alternatives are documented.
+- Consequences are acknowledged.
+- Ownership is clear.
+- Status is visible.
+- Superseded decisions are not deleted.
+- Cross-folder impact is traceable.
+- Decision records do not redefine implementation details.
+
+---
+
+# 9. Governance
+
+Decision Records documentation follows these governance rules:
+
+- `DR-00` governs all decision records in this folder.
+- Each decision record shall use a stable decision ID.
+- Frozen decision records shall not be edited to change the decision outcome.
+- A changed decision shall be captured through a new superseding decision record.
+- Superseded decisions shall remain available for historical traceability.
+- Decision records shall reference affected documentation folders.
+- Decision records shall not duplicate full content from source documents.
+
+---
+
+# 10. Summary
+
+The Decision Records folder is the long-term memory of the Digitize documentation set.
+
+It explains why major choices were made and helps future teams change the platform with context instead of guesswork.

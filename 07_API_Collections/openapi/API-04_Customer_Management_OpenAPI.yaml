@@ -1,0 +1,85 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Customer Management
+  version: v1
+  description: OpenAPI skeleton for API-04 Customer Management (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Customer Management
+paths:
+  /customers:
+    post:
+      tags: [Customer Management]
+      summary: Register Customer
+      operationId: customer_register_customer
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+    get:
+      tags: [Customer Management]
+      summary: Search Customers
+      operationId: customer_search_customers
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /customers/{customer_id}:
+    get:
+      tags: [Customer Management]
+      summary: View Customer Profile
+      operationId: customer_view_customer_profile
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

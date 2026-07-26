@@ -1,0 +1,3 @@
+file,old_snippet,new_snippet,notes
+# Example row:
+# API-01_Platform_Administration_Collection.md,"[[TBD — Source mapping pending — see BE traceability mappings](docs/10_Backend_Engineering/BE-TRACEABILITY_MAPPINGS.md) — see BE traceability mappings](docs/10_Backend_Engineering/BE-TRACEABILITY_MAPPINGS.md)","API-01-001","Owner: Platform; resolved by BA"

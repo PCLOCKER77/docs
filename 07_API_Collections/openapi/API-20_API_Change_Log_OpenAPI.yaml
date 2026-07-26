@@ -1,0 +1,47 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - API Change Log
+  version: v1
+  description: OpenAPI skeleton for API-20 Change Log (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: API Change Log
+paths:
+  /changelog:
+    get:
+      tags: [API Change Log]
+      summary: Get API Change Log
+      operationId: changelog_get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

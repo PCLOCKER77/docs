@@ -1,0 +1,89 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Organization, Facility & Site
+  version: v1
+  description: OpenAPI skeleton for API-02 Organization, Facility and Site (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Organization Facility Site
+paths:
+  /organizations:
+    post:
+      tags: [Organization Facility Site]
+      summary: Create Organization Profile
+      operationId: organization_create_organization
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /organizations/{organization_id}:
+    patch:
+      tags: [Organization Facility Site]
+      summary: Update Organization Profile
+      operationId: organization_update_organization
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /facilities:
+    post:
+      tags: [Organization Facility Site]
+      summary: Create Facility
+      operationId: facility_create_facility
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /sites:
+    post:
+      tags: [Organization Facility Site]
+      summary: Create Site
+      operationId: site_create_site
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

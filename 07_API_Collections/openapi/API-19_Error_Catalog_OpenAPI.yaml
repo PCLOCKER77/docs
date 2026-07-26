@@ -1,0 +1,47 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Error Catalog
+  version: v1
+  description: OpenAPI skeleton for API-19 Error Catalog (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Error Catalog
+paths:
+  /errors:
+    get:
+      tags: [Error Catalog]
+      summary: List Error Codes
+      operationId: errors_list_codes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

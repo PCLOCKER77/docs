@@ -1,0 +1,83 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Platform Administration
+  version: v1
+  description: OpenAPI skeleton for API-01 Platform Administration (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Platform Administration
+paths:
+  /platform/settings:
+    get:
+      tags: [Platform Administration]
+      summary: List Platform Settings
+      operationId: platform_list_settings
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /platform/master-data:
+    get:
+      tags: [Platform Administration]
+      summary: List Global Master Data
+      operationId: platform_list_master_data
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /platform/feature-flags:
+    get:
+      tags: [Platform Administration]
+      summary: List Feature Flags
+      operationId: platform_list_feature_flags
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /platform/maintenance:
+    post:
+      tags: [Platform Administration]
+      summary: Schedule Maintenance Window
+      operationId: platform_schedule_maintenance
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

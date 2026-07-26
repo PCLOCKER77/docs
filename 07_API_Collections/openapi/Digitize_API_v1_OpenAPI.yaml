@@ -1,0 +1,801 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API (combined)
+  version: v1
+  description: Combined OpenAPI generated from individual API collection skeletons (draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: API Change Log
+  - name: Attendance Walk-in
+  - name: Audit Logs
+  - name: Catalogue
+  - name: Common Reference
+  - name: Customer Management
+  - name: Error Catalog
+  - name: Exports Analytics
+  - name: Governance
+  - name: Health Checks
+  - name: Identity User Role
+  - name: Integration Contracts
+  - name: Inventory Products
+  - name: Loyalty Rewards
+  - name: Membership Management
+  - name: Notifications Alerts
+  - name: Operational Metrics
+  - name: Organization Facility Site
+  - name: Payments Gateway
+  - name: Platform Administration
+  - name: Promotions Discounts
+  - name: Report Scheduling
+  - name: Sales Transactions
+  - name: Testing Contracts
+  - name: Traceability
+  - name: Workforce Scheduling
+  - name: account_id
+  - name: code
+  - name: customer_id
+  - name: integration_id
+  - name: item_id
+  - name: membership_id
+  - name: organization_id
+  - name: page
+  - name: page_size
+  - name: payment_id
+  - name: product_id
+  - name: reference_type
+  - name: report_id
+  - name: staff_profile_id
+  - name: transaction_id
+paths:
+  /platform/settings:
+    get:
+      tags: [Platform Administration]
+      summary: List Platform Settings
+      operationId: platform_list_settings
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /platform/master-data:
+    get:
+      tags: [Platform Administration]
+      summary: List Global Master Data
+      operationId: platform_list_master_data
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /platform/feature-flags:
+    get:
+      tags: [Platform Administration]
+      summary: List Feature Flags
+      operationId: platform_list_feature_flags
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /platform/maintenance:
+    post:
+      tags: [Platform Administration]
+      summary: Schedule Maintenance Window
+      operationId: platform_schedule_maintenance
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /organizations:
+    post:
+      tags: [Organization Facility Site]
+      summary: Create Organization Profile
+      operationId: organization_create_organization
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /organizations/{organization_id}:
+    patch:
+      tags: [Organization Facility Site]
+      summary: Update Organization Profile
+      operationId: organization_update_organization
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /facilities:
+    post:
+      tags: [Organization Facility Site]
+      summary: Create Facility
+      operationId: facility_create_facility
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /sites:
+    post:
+      tags: [Organization Facility Site]
+      summary: Create Site
+      operationId: site_create_site
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /identity/staff-accounts:
+    post:
+      tags: [Identity User Role]
+      summary: Create Staff Account
+      operationId: identity_create_staff_account
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /identity/staff-profiles/{staff_profile_id}:
+    patch:
+      tags: [Identity User Role]
+      summary: Update Staff Profile
+      operationId: identity_update_staff_profile
+      parameters:
+        - name: staff_profile_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /identity/role-assignments:
+    post:
+      tags: [Identity User Role]
+      summary: Assign Staff Role
+      operationId: identity_assign_staff_role
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /customers:
+    post:
+      tags: [Customer Management]
+      summary: Register Customer
+      operationId: customer_register_customer
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+    get:
+      tags: [Customer Management]
+      summary: Search Customers
+      operationId: customer_search_customers
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /customers/{customer_id}:
+    get:
+      tags: [Customer Management]
+      summary: View Customer Profile
+      operationId: customer_view_customer_profile
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /membership-plans:
+    get:
+      tags: [Membership Management]
+      summary: List Membership Plans
+      operationId: membership_list_plans
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /memberships:
+    post:
+      tags: [Membership Management]
+      summary: Create Membership
+      operationId: membership_create_membership
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /memberships/{membership_id}/freeze:
+    post:
+      tags: [Membership Management]
+      summary: Freeze Membership
+      operationId: membership_freeze_membership
+      parameters:
+        - name: membership_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /attendance/check-in:
+    post:
+      tags: [Attendance Walk-in]
+      summary: Record Customer Check-in
+      operationId: attendance_record_check_in
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /attendance/eligibility:
+    post:
+      tags: [Attendance Walk-in]
+      summary: Validate Attendance Eligibility
+      operationId: attendance_validate_eligibility
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /walkin-visits:
+    post:
+      tags: [Attendance Walk-in]
+      summary: Create Walk-in Visit
+      operationId: walkin_create_visit
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /sales/transactions:
+    post:
+      tags: [Sales Transactions]
+      summary: Create Transaction
+      operationId: sales_create_transaction
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /sales/transactions/{transaction_id}:
+    get:
+      tags: [Sales Transactions]
+      summary: Get Transaction
+      operationId: sales_get_transaction
+      parameters:
+        - name: transaction_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /payments/initiate:
+    post:
+      tags: [Payments Gateway]
+      summary: Initiate Payment
+      operationId: payments_initiate
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /payments/{payment_id}/status:
+    get:
+      tags: [Payments Gateway]
+      summary: Get Payment Status
+      operationId: payments_get_status
+      parameters:
+        - name: payment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /promotions:
+    get:
+      tags: [Promotions Discounts]
+      summary: List Promotions
+      operationId: promotions_list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /discounts/apply:
+    post:
+      tags: [Promotions Discounts]
+      summary: Apply Discount
+      operationId: discounts_apply
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /reports:
+    post:
+      tags: [Report Scheduling]
+      summary: Schedule Report
+      operationId: reports_schedule
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /reports/{report_id}/status:
+    get:
+      tags: [Report Scheduling]
+      summary: Get Report Status
+      operationId: reports_get_status
+      parameters:
+        - name: report_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /products:
+    get:
+      tags: [Inventory Products]
+      summary: List Products
+      operationId: products_list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+    post:
+      tags: [Inventory Products]
+      summary: Create Product
+      operationId: products_create
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /products/{product_id}/stock:
+    patch:
+      tags: [Inventory Products]
+      summary: Update Stock Level
+      operationId: products_update_stock
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /catalogue/items:
+    get:
+      tags: [Catalogue]
+      summary: List Catalogue Items
+      operationId: catalogue_list_items
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /catalogue/items/{item_id}:
+    get:
+      tags: [Catalogue]
+      summary: Get Catalogue Item
+      operationId: catalogue_get_item
+      parameters:
+        - name: item_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /loyalty/accounts:
+    get:
+      tags: [Loyalty Rewards]
+      summary: List Loyalty Accounts
+      operationId: loyalty_list_accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /loyalty/accounts/{account_id}/points:
+    post:
+      tags: [Loyalty Rewards]
+      summary: Adjust Points
+      operationId: loyalty_adjust_points
+      parameters:
+        - name: account_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /references/{reference_type}:
+    get:
+      tags: [Common Reference]
+      summary: List reference values for a type
+      operationId: references_list_by_type
+      parameters:
+        - name: reference_type
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /references/{reference_type}/{code}:
+    get:
+      tags: [Common Reference]
+      summary: Get a single reference value
+      operationId: references_get_value
+      parameters:
+        - name: reference_type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /schedules:
+    get:
+      tags: [Workforce Scheduling]
+      summary: List Schedules
+      operationId: schedules_list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+    post:
+      tags: [Workforce Scheduling]
+      summary: Create Schedule
+      operationId: schedules_create
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /notifications:
+    post:
+      tags: [Notifications Alerts]
+      summary: Send Notification
+      operationId: notifications_send
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /alerts:
+    get:
+      tags: [Notifications Alerts]
+      summary: List Alerts
+      operationId: alerts_list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /traceability/matrix:
+    get:
+      tags: [Traceability]
+      summary: Get Traceability Matrix
+      operationId: traceability_get_matrix
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /audit/logs:
+    get:
+      tags: [Audit Logs]
+      summary: Query Audit Logs
+      operationId: audit_query_logs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /errors:
+    get:
+      tags: [Error Catalog]
+      summary: List Error Codes
+      operationId: errors_list_codes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /changelog:
+    get:
+      tags: [API Change Log]
+      summary: Get API Change Log
+      operationId: changelog_get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /governance/policies:
+    get:
+      tags: [Governance]
+      summary: List Governance Policies
+      operationId: governance_list_policies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /testing/contracts:
+    get:
+      tags: [Testing Contracts]
+      summary: List Test Contracts
+      operationId: testing_list_contracts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /integrations:
+    get:
+      tags: [Integration Contracts]
+      summary: List Integrations
+      operationId: integrations_list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /integrations/{integration_id}/health:
+    get:
+      tags: [Integration Contracts]
+      summary: Check Integration Health
+      operationId: integrations_check_health
+      parameters:
+        - name: integration_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /exports:
+    post:
+      tags: [Exports Analytics]
+      summary: Start Export Job
+      operationId: exports_start_job
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /analytics/reports:
+    get:
+      tags: [Exports Analytics]
+      summary: List Analytics Reports
+      operationId: analytics_list_reports
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /metrics:
+    get:
+      tags: [Operational Metrics]
+      summary: Get Operational Metrics
+      operationId: metrics_get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /health:
+    get:
+      tags: [Health Checks]
+      summary: Service Health
+      operationId: health_get_status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

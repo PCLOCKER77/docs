@@ -1,0 +1,59 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Notifications and Alerts
+  version: v1
+  description: OpenAPI skeleton for API-16 Notifications and Alerts (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Notifications Alerts
+paths:
+  /notifications:
+    post:
+      tags: [Notifications Alerts]
+      summary: Send Notification
+      operationId: notifications_send
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /alerts:
+    get:
+      tags: [Notifications Alerts]
+      summary: List Alerts
+      operationId: alerts_list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

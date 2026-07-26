@@ -1,0 +1,77 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Identity, User and Role
+  version: v1
+  description: OpenAPI skeleton for API-03 Identity, User and Role (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Identity User Role
+paths:
+  /identity/staff-accounts:
+    post:
+      tags: [Identity User Role]
+      summary: Create Staff Account
+      operationId: identity_create_staff_account
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /identity/staff-profiles/{staff_profile_id}:
+    patch:
+      tags: [Identity User Role]
+      summary: Update Staff Profile
+      operationId: identity_update_staff_profile
+      parameters:
+        - name: staff_profile_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /identity/role-assignments:
+    post:
+      tags: [Identity User Role]
+      summary: Assign Staff Role
+      operationId: identity_assign_staff_role
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string

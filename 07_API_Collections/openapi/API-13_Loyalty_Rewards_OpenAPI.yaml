@@ -1,0 +1,65 @@
+openapi: "3.1.0"
+info:
+  title: Digitize API - Loyalty and Rewards
+  version: v1
+  description: OpenAPI skeleton for API-13 Loyalty and Rewards (design draft)
+servers:
+  - url: "{{base_url}}/api/{{api_version}}"
+tags:
+  - name: Loyalty Rewards
+paths:
+  /loyalty/accounts:
+    get:
+      tags: [Loyalty Rewards]
+      summary: List Loyalty Accounts
+      operationId: loyalty_list_accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /loyalty/accounts/{account_id}/points:
+    post:
+      tags: [Loyalty Rewards]
+      summary: Adjust Points
+      operationId: loyalty_adjust_points
+      parameters:
+        - name: account_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            category:
+              type: string
