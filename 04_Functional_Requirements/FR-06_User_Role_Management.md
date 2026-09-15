@@ -2631,6 +2631,15 @@ Credential reset shall use secure tokens, expiry, single-use validation, protect
 
 ### Related APIs
 
+> **Superseded for self-service Authentication.** HTTP contracts for login
+> are not listed here. Self-service recovery is frozen in
+> `docs/architecture/AUTH_CONTRACT_FREEZE.md` as
+> `POST /api/v1/auth/password-reset` and
+> `POST /api/v1/auth/password-reset/confirm`.
+> Administrative reset remains API-03-009
+> (`POST /api/v1/identity/users/{user_id}/credential-reset`), not the
+> FR table path below. Treat the table as historical FR mapping only.
+
 | API | Method | Authentication | Purpose | Response |
 |---|---|---|---|---|
 | /api/v1/staff/{staffId}/credentials/reset | POST | Organization Administrator token | Initiate administrative credential reset | 202 Accepted with reset status |

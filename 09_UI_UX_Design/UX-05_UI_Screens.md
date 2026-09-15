@@ -223,18 +223,18 @@ This example is a complete, implementation-ready screen specification that follo
 	- Session and security notices (e.g., session expiry warnings when reached from expired-session flow)
 
 - Fields:
-	- `username` (string) — required. Accepts email or username per API-03. Validation: non-empty, trimmed, max length 254, email-format hint when `@` present.
+	- `login_identifier` (string) — required. UI may label this Username/Email. API field is `login_identifier` (AUTH_CONTRACT_FREEZE.md). Validation: non-empty, trimmed, max length 254.
 	- `password` (string) — required. Validation: non-empty, min 8 characters (frontend hint only; backend enforces policy). Input type: password (masked). Provide toggle for reveal/hide.
-	- `remember_me` (boolean) — optional. Hint: persists session per product session policy; backend enforces token lifetime.
+	- `remember_me` (boolean) — optional. `false` uses session_policy max (default 8 hours); `true` uses 30-day refresh cookie.
 
 - Controls / Actions:
-	- `Sign In` (primary) — submits credentials to `POST /auth/login` (API-03). While in-flight, show inline loading state and disable inputs. Prevent duplicate submissions via button disable and idempotency token on retry attempts.
+	- `Sign In` (primary) — submits credentials to `POST /api/v1/auth/login` (frozen in `docs/architecture/AUTH_CONTRACT_FREEZE.md`; field `login_identifier`, not `username`). While in-flight, show inline loading state and disable inputs. Prevent duplicate submissions via button disable and idempotency token on retry attempts.
 	- `Forgot password` (secondary link) — navigates to `UI-AUTH-002` (Password Reset Request).
 	- `Help / Contact support` (tertiary) — shows support contact and correlation guidance.
 
 - Data sources / API mappings:
-	- Authenticate call: `POST /auth/login` (API-03). Expected success: 200 + session token, refresh token, user profile, available roles and tenant list (if included in payload). Failure cases: 401 invalid credentials, 423 account locked, 429 rate limit, 5xx provider error.
-	- After success: call `GET /auth/me` (or included profile response) to obtain effective roles and authorized organizations (API-03 / API-02). Route to `UI-TEN-001` when multiple contexts exist.
+	- Authenticate call: `POST /api/v1/auth/login` (AUTH_CONTRACT_FREEZE.md). Success: API-00 envelope with access JWT, `expires_in`, `session_id`, user/roles/permissions. Refresh token is an HttpOnly cookie, not JSON. Failures: 401 `AUTHENTICATION_FAILED` (generic; no 423), 422 `VALIDATION_FAILED`, 429 `RATE_LIMIT_EXCEEDED`.
+	- Profile is included in login `data.user`. There is no Phase-1 `GET /auth/me`. Tenant switching remains UI-TEN-001 / API-02 (list/get still REQUIRES DECISION).
 
 - Integration mappings:
 	- Integration contract: IC-02 for session lifecycle, token refresh, and forced logout behavior.
@@ -244,7 +244,7 @@ This example is a complete, implementation-ready screen specification that follo
 	- Client-side: required fields, trimming, simple email-format hint. Do not enforce complex password policy solely on client.
 	- Server-side: show server-provided validation messages mapped to field-level or banner messages. Map error codes to user-safe text using the Error and Recovery Standard (UI-00 / API-19).
 	- Rate-limit handling: show friendly throttling message with retry-after where provided by API.
-	- Account lock: show locked state with instructions to contact support and optional automated unlock flow reference.
+	- Account lock: do not show a distinct locked state from invalid credentials (enumeration). Use the generic authentication-failed banner. Support can inspect `correlation_id`.
 
 - State Matrix (required states):
 	- Initial: empty form

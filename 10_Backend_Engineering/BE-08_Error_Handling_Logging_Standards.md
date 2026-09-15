@@ -1,5 +1,10 @@
 # BE-08 Error Handling Logging Standards
 
+> **Implementation authority:** `docs/architecture/BACKEND_CODING_STANDARDS.md` §7
+> and `digitize-services/app/api/errors.py`. This BE-08 draft remains historical
+> design prose. Where it conflicts with the coding standard (especially numbered
+> error-code format), the coding standard wins.
+
 > Exception design, API error mapping, structured logging, correlation, audit handoff, metrics, tracing, diagnostics, redaction, and support visibility standards.
 
 ---

@@ -141,6 +141,12 @@ Organization, Facility, and Site APIs establish the operational structure used b
 | API-02-012 | PATCH | `/api/v1/sites/{site_id}` | Update Site Details | FR-SIT-002 |
 | API-02-013 | PATCH | `/api/v1/sites/{site_id}/settings/{setting_key}` | Configure Site Setting | FR-SIT-003 |
 | API-02-014 | POST | `/api/v1/sites/{site_id}/activate` | Activate Site | FR-SIT-007 |
+| API-02-015 | GET | `/api/v1/organizations` | List Organizations | FR-ORG-001 |
+| API-02-016 | GET | `/api/v1/organizations/{organization_id}` | View Organization Profile | FR-ORG-002 |
+| API-02-017 | GET | `/api/v1/facilities` | List Facilities | FR-FAC-001 |
+| API-02-018 | GET | `/api/v1/facilities/{facility_id}` | View Facility Details | FR-FAC-002 |
+| API-02-019 | GET | `/api/v1/sites` | List Sites | FR-SIT-001 |
+| API-02-020 | GET | `/api/v1/sites/{site_id}` | View Site Details | FR-SIT-002 |
 
 ---
 

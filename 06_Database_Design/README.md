@@ -104,6 +104,8 @@ DB-19_PostgreSQL_Administration_Guide.md
 DB-20_SQL_Coding_Standards.md
 DB-21_Reporting_Data_Architecture.md
 DB-22_Event_Integration_Data_Architecture.md
+MIGRATION_REVIEW.md
+DATABASE_FOUNDATION_FREEZE.md
 ```
 
 ---
@@ -135,6 +137,8 @@ DB-22_Event_Integration_Data_Architecture.md
 | DB-20 | SQL Coding Standards | Design Draft | Defines SQL naming, formatting, migration, DDL, DML, query, JSONB, trigger, function, and review standards |
 | DB-21 | Reporting Data Architecture | Design Draft | Defines reporting projections, KPI snapshots, aggregates, materialized views, refresh patterns, security, and quality controls |
 | DB-22 | Event & Integration Data Architecture | Design Draft | Defines outbox, inbox, provider callbacks, retries, failures, idempotency, correlation, and future event-streaming readiness |
+| MIGRATION_REVIEW | Migration Review | Reviewed | Reconciles Alembic vs SQL CreateDB vs DB-11. SQL 001–008 is the approved physical path |
+| DATABASE_FOUNDATION_FREEZE | Database Foundation Freeze | Frozen with deferred items | Records PostgreSQL empty-database validation of the DB-11 SQL path |
 
 ---
 

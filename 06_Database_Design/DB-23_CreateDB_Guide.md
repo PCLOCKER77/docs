@@ -3,13 +3,13 @@
 
 Purpose
 -------
-Practical, step-by-step guidance to create the PostgreSQL database, logical schemas, tables, relationships, and indexes for Digitize during development, CI, or initial environment provisioning. This guide complements the canonical DDL scripts in `database/migrations` and the implementation scripts in `DB-11_Database_DDL_DML_Scripts.md`.
+Practical, step-by-step guidance to create the PostgreSQL database, logical schemas, tables, relationships, and indexes for Digitize during development, CI, or initial environment provisioning. This guide complements the canonical DDL scripts in `database/migrations` and the implementation scripts in `DB-11_Database_DDL_DML_Scripts.md`. Physical validation of that path is recorded in `DATABASE_FOUNDATION_FREEZE.md`.
 
 Prerequisites
 -------------
 - PostgreSQL 14+ running and reachable (container or managed service).
 - `psql` client available on your path.
-- Environment variables set: `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`.
+- Environment variables set: `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, and **required** `PGDATABASE` (dedicated empty database).
 - Repository checked out and current working dir at project root.
 
 Quick create (one-liner)
@@ -89,19 +89,21 @@ Gist: multi-tenant indexing
 - Use composite indexes such as `(tenant_id, <search_column>)` to make tenant-scoped queries selective.
 - Consider partial indexes for high-volume tables when queries target a subset (e.g., `WHERE active = true`).
 
-Using Alembic for application migrations
-----------------------------------------
-- For application-driven, incremental schema changes use Alembic inside `digitize-services`:
+Physical provisioning path (frozen)
+-----------------------------------
+Provision DIGITIZE PostgreSQL with:
 
-```bash
-cd digitize-services
-alembic init migrations          # one-time
-# edit alembic.ini or env.py to set sqlalchemy.url or read from app config
-alembic revision --autogenerate -m "create customers table"
-alembic upgrade head
+```text
+database/migrations/001–008
+scripts/run_migrations_local.sh
 ```
 
-- Commit generated revisions into `digitize-services/migrations/versions` and include them in releases.
+```text
+DO NOT RUN ALEMBIC FOR DB-11 PROVISIONING
+DO NOT RUN ALEMBIC AUTOGENERATE
+```
+
+`digitize-services/migrations/versions/` is an obsolete pre-production scaffold. Alembic reset vs retirement is a separate approved decision. See `DATABASE_FOUNDATION_FREEZE.md`.
 
 Seeding data and idempotency
 ----------------------------
@@ -110,13 +112,13 @@ Seeding data and idempotency
 
 Verification and testing
 ------------------------
-- After migrations run, execute `database/migrations/verify_schema.sql` (the local runner runs this by default).
-- Add CI job to run `scripts/run_migrations_local.sh` against a fresh Postgres container and fail the build on SQL errors.
+- After migrations run, the runner executes `database/migrations/verify_core_contract.sql` (RAISE on missing core contract) then diagnostic `verify_schema.sql`.
+- CI job `.github/workflows/db-migrations-verify.yml` runs `scripts/run_migrations_local.sh` against a fresh Postgres service.
 
 Rollback and migration governance
 --------------------------------
 - For SQL script-based provisioning, plan forward-only migrations with compensating scripts for destructive changes.
-- For Alembic-managed migrations, prefer reversible operations where possible; capture manual rollback steps in migration notes when irreversible operations are required.
+- Do not use the obsolete Alembic 117-revision chain for rollback or provisioning.
 
 Operational notes
 -----------------

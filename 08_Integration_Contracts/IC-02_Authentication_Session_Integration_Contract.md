@@ -1,5 +1,12 @@
 # IC-02 Authentication Session Integration Contract
 
+> **HTTP contract authority:** `docs/architecture/AUTH_CONTRACT_FREEZE.md`.
+> This IC remains the integration-behavior draft (events, revocation,
+> lockout). Where this file conflicts with the freeze (paths, token
+> transport, envelopes), the freeze wins.
+
+**Document ID:** IC-02
+
 **Document ID:** IC-02  
 **Document Name:** Authentication Session Integration Contract  
 **Company:** OreeOn Technologies Pvt. Ltd.  

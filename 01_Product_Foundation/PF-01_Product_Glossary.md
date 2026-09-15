@@ -408,7 +408,7 @@ The following principles govern the hierarchy:
 5. Business configuration is defined at the Facility level.
 6. Operational activities are executed at the Site level.
 7. Organization Admin provides centralized governance.
-8. Site Admin manages day-to-day operations.
+8. Assigned Site Admins and Staff manage day-to-day operations. Manager is not a role.
 9. Configuration changes follow the Approval Workflow.
 10. The hierarchy is designed to support future Facility Types without changing the core architecture.
 
@@ -416,24 +416,22 @@ The following principles govern the hierarchy:
 
 # 8. User Roles
 
-The Digitize by OreeOn platform follows a hierarchical role-based access model.
+The Digitize by OreeOn platform follows a hierarchical **tenant** model (Platform → Organization → Facility → Site) with **assignment- and permission-based** operational roles.
 
-Each role has clearly defined responsibilities, permissions, and approval authority. This separation ensures centralized governance while allowing operational flexibility across multiple facilities and sites.
-
-The role hierarchy is illustrated below.
+Authoritative access, Phase-1 mobile personas, and commerce boundaries are frozen in `docs/architecture/ACCESS_MOBILE_COMMERCE_ARCHITECTURE_FREEZE.md` (DR-019). Authoritative roles: Platform Admin, Organization Admin, Site Admin, Staff. There is **no Manager role**. Historical “Facility Manager” labels in FR/UX/API collections are operational titles, not a fifth RBAC role.
 
 ```mermaid
 flowchart TD
 
-A[Platform Admin]
+PA[Platform Admin application]
 
-A --> B[Organization Admin]
+PA --> OA[Organization Admin]
 
-B --> C[Site Admin]
+OA --> SA[Site Admin]
 
-C --> D[Staff]
+OA --> S[Staff]
 
-B --> E[Customer]
+OA --> C[Customer commercial relationship]
 ```
 
 ---
@@ -458,25 +456,26 @@ To administer the platform and ensure reliable operation for all customer organi
 
 ### Responsibilities
 
-* Create Organizations
-* Activate Organizations
-* Suspend Organizations
-* Manage Platform Licenses
-* Manage SaaS Subscriptions
-* Configure Platform Capabilities
-* Monitor Platform Health
-* View Platform-wide Reports
-* Manage Global Settings
-* Support Customer Organizations
+* Create and manage Organizations
+* View and manage Facilities and Sites
+* View and administer Organization users
+* View and administer Organization Admins, Site Admins, and Staff across organizations
+* Manage platform licenses and SaaS subscriptions
+* Suspend, revoke, or administer users where platform administration requires it
+* Configure platform capabilities
+* Monitor platform health and platform-wide operational/administrative data
+* Manage global settings
+* Support customer organizations
 
 ---
 
 ### Characteristics
 
-* Highest authority within the platform.
-* Cannot perform customer operational activities.
-* Has visibility across every organization.
-* Controls platform availability.
+* Highest platform-wide administrative authority, through the **Platform Admin application**.
+* Can manage organization users, Organization Admins, Site Admins, and Staff across organizations according to platform permissions.
+* Does not replace Organization Admin as the **normal** business-level administrator of Site Admins and Staff.
+* Is not a Phase-1 operational mobile persona.
+* Does not perform day-to-day facility reception/operations as a job function.
 
 ---
 
@@ -532,9 +531,10 @@ Business Administration
 User Management
 
 * Create Site Admins.
+* Assign Site Admin access.
 * Create Staff.
-* Assign user permissions.
-* Disable user accounts.
+* Assign Staff access.
+* Suspend or revoke Site Admin and Staff access within the Organization.
 
 Business Configuration
 
@@ -547,7 +547,7 @@ Business Configuration
 
 Approval Management
 
-* Review Site Admin requests.
+* Review Site Admin/Staff configuration requests.
 * Approve or reject configuration changes.
 * Approve operational updates.
 
@@ -561,9 +561,9 @@ Business Monitoring
 
 Subscription Management
 
-* Purchase subscriptions.
-* Renew subscriptions.
+* Manage the Organization’s Digitize SaaS subscription (Organization → Digitize/OreeOn).
 * View license details.
+* SaaS purchasing is not a Staff-mobile checkout flow.
 
 ---
 
@@ -585,7 +585,7 @@ An organization owns:
 * Gym
 * Yoga Centre
 
-The Organization Admin configures all three facilities, creates their sites, appoints Site Admins, defines memberships, approves requested changes, and monitors business performance from a centralized dashboard.
+The Organization Admin configures all three facilities, assigns facilities to sites, creates Site Admins and Staff, defines memberships, and monitors business performance from a centralized dashboard.
 
 ---
 
@@ -595,6 +595,7 @@ The Organization Admin configures all three facilities, creates their sites, app
 * Facility
 * Site
 * Site Admin
+* Staff
 * Membership Plan
 
 ---
@@ -603,87 +604,48 @@ The Organization Admin configures all three facilities, creates their sites, app
 
 ### Definition
 
-The Site Admin is responsible for operating a specific site on behalf of the organization.
+A Site Admin is the **site-level operational administrator**. Access is determined by assigned Site scope and Site-level permissions.
 
-The Site Admin manages daily business operations, staff, customers, attendance, and local activities but cannot independently modify business configurations.
-
-Configuration changes must be submitted for approval to the Organization Admin.
+Site Admin is not a separate tenant level. Site Admin is **not** the Manager role (Manager is not a role).
 
 ---
 
 ### Purpose
 
-To ensure efficient day-to-day management of a physical site while maintaining centralized organizational governance.
+To oversee operational activities of the assigned Site under Organization Admin governance, working with Staff assigned to the Site.
 
 ---
 
 ### Responsibilities
 
-Operational Management
+Determined by assigned Site-level permissions already described in product/FR documentation. Typical examples:
 
-* Manage daily operations.
-* Monitor customer activities.
-* Supervise staff.
-* Track attendance.
-* Monitor sessions.
+* Daily operations within assigned Site scope
+* Supervise Staff at the assigned Site where permitted
+* Customer operational workflows where permitted
+* Attendance and sessions where permitted
+* Site-scoped reporting where permitted
 
-Customer Management
-
-* Register customers.
-* Manage memberships.
-* Handle walk-in customers.
-* Review invoices.
-* Resolve operational issues.
-
-Staff Management
-
-* Assign operational duties.
-* Manage schedules.
-* Monitor attendance.
-* Review daily activities.
-
-Configuration Requests
-
-* Request new membership plans.
-* Request pricing changes.
-* Request activity changes.
-* Request operational rule updates.
-* Request schedule modifications.
-
-Reporting
-
-* View site reports.
-* View attendance reports.
-* View customer reports.
-* View operational statistics.
+Site Admin must not automatically receive platform-wide or organization-wide authority.
 
 ---
 
 ### Characteristics
 
-* Responsible for one site.
-* Cannot directly publish business configuration.
-* Can submit approval requests.
-* Responsible for operational excellence.
-
----
-
-### Example
-
-The Site Admin of the HSR Swimming Pool notices demand for an evening swimming batch.
-
-Instead of creating it directly, the Site Admin submits a request to the Organization Admin for approval.
-
-Only after approval does the new batch become available to customers.
+* Assignment- and permission-scoped to Site
+* Phase-1 operational mobile persona
+* Cannot manage Platform Admin accounts
+* Cannot redefine platform configuration
+* Cannot automatically administer other organizations or unassigned sites
 
 ---
 
 ### Related Terms
 
-* Site
-* Staff
 * Organization Admin
-* Approval Request
+* Staff
+* Facility
+* Site
 
 ---
 
@@ -693,7 +655,7 @@ Only after approval does the new batch become available to customers.
 
 Staff members perform operational activities required for the daily functioning of a site.
 
-Their permissions are limited to the responsibilities assigned by the Organization Admin or Site Admin.
+Their permissions are limited to the responsibilities assigned by the Organization Admin (or, where permitted, a Site Admin). Platform Admin may also administer Staff across organizations according to platform permissions.
 
 Staff members cannot modify business configuration.
 
@@ -750,9 +712,13 @@ A receptionist registers a new customer, issues an invoice, collects payment, an
 
 ### Definition
 
-A Customer is an individual who consumes services offered by a facility.
+A Customer is an individual who has a **commercial/service relationship with a Facility** (Customer → Facility).
 
-Customers may purchase memberships, participate in activities, attend sessions, or access services depending on the facility type.
+Customers may purchase memberships, single-entry access, training, classes, or other facility services.
+
+**Customer is not the same concept as Participant.** A participant is who takes part in an activity; they may or may not be the Customer.
+
+Customer is **not** a Phase-1 operational mobile persona. Customer mobile is Phase 2. Customer is not an `identity.user_account` in Phase 1.
 
 ---
 
@@ -810,25 +776,27 @@ All three services coexist under the same customer profile.
 
 The following principles govern user roles across the platform.
 
-1. Every user must belong to exactly one primary role.
+1. Tenant hierarchy is Platform → Organization → Facility → Site. Roles are not extra tenant levels.
 
 2. Every Organization has at least one Organization Admin.
 
-3. Every Site has at least one Site Admin.
+3. Site Admin is the site-level operational administrator. Manager is not a role.
 
-4. Staff permissions are role-based and configurable.
+4. Organization Admin is the normal creator and administrator of Site Admins and Staff within the Organization.
 
-5. Site Admins cannot directly modify business configuration.
+5. Platform Admin can administer organization users, Organization Admins, Site Admins, and Staff across the platform according to platform permissions.
 
-6. All business configuration requests require Organization Admin approval.
+6. Organization Admin cannot manage Platform Admin accounts.
 
-7. Platform Admins cannot participate in customer operational activities.
+7. Site Admin and Staff permissions are assignment-based and configurable (least privilege).
 
-8. Customers cannot access administrative functions.
+8. Customers cannot access administrative functions. Customer ≠ Participant.
 
-9. Permissions are granted using the principle of least privilege.
+9. Guardian Relationship is future-ready; detailed guardian/minor UX is deferred.
 
-10. Every user action must be auditable.
+10. Suspend, revoke, or remove organization assignment is not account deletion.
+
+11. Every user action must be auditable.
 
 ---
 
@@ -1033,7 +1001,7 @@ The Site enables organizations to operate multiple physical locations under the 
 ## Ownership
 
 * Belongs to exactly one Facility.
-* Operated by a Site Admin.
+* Operated by assigned Site Admins and Staff.
 * Governed by the Organization Admin.
 
 ---
@@ -1097,7 +1065,7 @@ Each site has its own staff, customers, attendance records, and operational acti
 ## Business Rules
 
 * Every Site belongs to one Facility.
-* Every Site must have at least one Site Admin.
+* Site access is assignment-scoped to Site Admin and Staff; Manager is not a role.
 * Business configuration changes require Organization Admin approval.
 * Operational data belongs to the Site.
 * Reports may be generated at Site, Facility, or Organization level.
@@ -1109,6 +1077,7 @@ Each site has its own staff, customers, attendance records, and operational acti
 * Facility
 * Organization
 * Site Admin
+* Staff
 * Customer
 
 ---

@@ -1,5 +1,12 @@
 # BE-05 Authentication Authorization Implementation
 
+> **HTTP and token-transport authority:**
+> `docs/architecture/AUTH_CONTRACT_FREEZE.md`.
+> This document remains the backend implementation standard for JWT
+> validation and authorization. Phase-1 login/refresh/logout/recovery
+> paths, cookie refresh transport, Argon2id, RS256, and API-00 envelopes
+> are defined only in the freeze.
+
 > Identity verification, JWT validation, principal resolution, roles, permissions, ownership, entitlement, resource-state authorization, service identities, and secure access enforcement standards.
 
 ---

@@ -4,7 +4,12 @@ This file lists lightweight, ready-to-post GitHub issues to capture gating items
 
 ---
 
-## 1) Auth API Confirmation (API-03)
+## 1) Auth API Confirmation — CLOSED for Phase 1
+
+HTTP contract is frozen in `docs/architecture/AUTH_CONTRACT_FREEZE.md`.
+Do not implement from this issue. MFA/SSO remain deferred.
+
+---
 
 - Title: [Docs Blocker] Confirm Authentication API details (API-03)
 - Labels: documentation, api, blocking, security

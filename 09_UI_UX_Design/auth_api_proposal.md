@@ -1,4 +1,15 @@
-# Auth API Proposal (API-03) — Draft for Owner Confirmation
+# Auth API Proposal (API-03) — SUPERSEDED
+
+**Status:** Superseded by `docs/architecture/AUTH_CONTRACT_FREEZE.md`.
+
+Do not implement `POST /auth/login`, raw OAuth-style bodies, JSON refresh
+tokens, or HTTP 423 lockout from this draft. The frozen Phase-1 contract
+is `/api/v1/auth/*`, API-00 envelope, access JWT in JSON, refresh cookie
+only, generic `AUTHENTICATION_FAILED`.
+
+The remainder is retained as historical Product Design notes.
+
+---
 
 Status: Proposed (Product Design drafted) — please confirm with API owner/security owner.
 

@@ -1,4 +1,10 @@
-> **Status:** Frozen — 2026-07-26 — 2026-07-26
+> **Status:** SUPERSEDED FOR NAMING — 2026-09-12
+>
+> The `{DOMAIN}_{CATEGORY}_{NNN}` format and numbered codes in this document
+> are historical design-draft identifiers. They are **not** live application
+> error codes. Authoritative convention: `<DOMAIN>_<SEMANTIC_ERROR>` in
+> `docs/architecture/BACKEND_CODING_STANDARDS.md` and
+> `digitize-services/app/api/error_codes.py`.
 
 # API-19 API Error Code Catalog
 
@@ -80,27 +86,36 @@ Out of scope:
 
 # 5. Error Code Format
 
-Standard format:
+**Superseded.** Do not implement the numbered format below.
+
+Live format:
 
 ```text
-{DOMAIN}_{CATEGORY}_{NNN}
+<DOMAIN>_<SEMANTIC_ERROR>
 ```
 
 Examples:
 
 ```text
-CUSTOMER_VALIDATION_001
-MEMBERSHIP_CONCURRENCY_001
-PAYMENT_PROVIDER_001
-WEBHOOK_SIGNATURE_001
+AUTHENTICATION_FAILED
+FACILITY_NOT_FOUND
+RATE_LIMIT_EXCEEDED
+INTERNAL_ERROR
 ```
 
-Rules:
+Historical design-draft format (not live):
+
+```text
+{DOMAIN}_{CATEGORY}_{NNN}
+```
+
+Rules for live codes:
 
 - Use uppercase snake case.
-- Use stable three-digit numeric suffixes.
+- Do not use three-digit numeric suffixes.
+- Do not encode HTTP status or API identifiers into the code.
 - Do not reuse retired codes.
-- Do not change the meaning of an existing code.
+- Do not change the meaning of an existing live code.
 - Do not encode tenant, user, provider secret, or resource ID in the code.
 
 ---

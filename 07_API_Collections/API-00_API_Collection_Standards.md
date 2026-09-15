@@ -173,7 +173,7 @@ URL rules:
 | Query parameters | snake_case | `page_size` |
 | Request JSON fields | snake_case | `customer_id` |
 | Response JSON fields | snake_case | `customer_id` |
-| Error codes | uppercase snake case | `CUSTOMER_VALIDATION_001` |
+| Error codes | uppercase snake case | `VALIDATION_FAILED`, `FACILITY_NOT_FOUND` |
 | HTTP headers | Standard HTTP header casing | `X-Correlation-ID` |
 | Database columns | snake_case | `customer_id` |
 | Event names | lowercase dot-separated names unless source architecture defines otherwise | `platform.setting.updated` |
@@ -411,7 +411,7 @@ Rules:
 {
   "success": false,
   "error": {
-    "code": "MEMBERSHIP_BUSINESS_001",
+    "code": "MEMBERSHIP_INVALID",
     "message": "The membership is not eligible for this operation.",
     "category": "Business",
     "details": []
@@ -489,20 +489,27 @@ Error codes shall use stable uppercase snake case.
 Format:
 
 ```text
-{DOMAIN}_{CATEGORY}_{NNN}
+<DOMAIN>_<SEMANTIC_ERROR>
 ```
+
+HTTP status, API identifiers (`API-02-005`), and OpenAPI operation IDs are independent of the application error code.
+
+Do not use numeric suffixes, HTTP status numbers, or API-number prefixes.
 
 Examples:
 
 | Error Code | Meaning |
 |---|---|
-| AUTH_AUTHENTICATION_001 | Authentication token is missing or invalid |
-| AUTH_AUTHORIZATION_001 | User lacks required permission |
-| TENANT_VALIDATION_001 | Organization context is missing or invalid |
-| PLATFORM_VALIDATION_001 | Platform configuration request is invalid |
-| PAYMENT_CONFLICT_001 | Idempotency key conflicts with an existing transaction |
+| AUTHENTICATION_FAILED | Authentication is missing or invalid |
+| AUTHORIZATION_DENIED | Caller lacks required permission |
+| ORGANIZATION_INVALID | Organization request failed validation |
+| PLATFORM_NOT_FOUND | Requested platform resource was not found |
+| RATE_LIMIT_EXCEEDED | Caller exceeded the allowed request rate |
+| INTERNAL_ERROR | Unexpected technical failure |
 
-Detailed error ownership and domain-specific catalogs shall be maintained in `API-19_API_Error_Code_Catalog.md`.
+Authoritative live codes: `digitize-services/app/api/error_codes.py` and `docs/architecture/BACKEND_CODING_STANDARDS.md` §7.
+
+Historical `{DOMAIN}_{CATEGORY}_{NNN}` identifiers in older collection catalogs (including API-19 numbered tables) are **not** live application error codes.
 
 ---
 

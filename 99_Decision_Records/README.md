@@ -114,7 +114,9 @@ This folder provides detailed cross-folder records for decisions that need durab
 ├── DR-014_S3_Compatible_Object_Storage_File_Scanning_Baseline.md
 ├── DR-015_Flutter_Hybrid_Frontend_Baseline.md
 ├── DR-016_AWS_Cloud_Provider_Baseline.md
-└── DR-017_Modular_Monolith_Baseline.md
+├── DR-017_Modular_Monolith_Baseline.md
+├── DR-018_Engineering_Foundation_Runtime.md
+└── DR-019_Access_Mobile_Commerce_Architecture.md
 ```
 
 ---
@@ -143,6 +145,8 @@ This folder provides detailed cross-folder records for decisions that need durab
 | DR-015 | Flutter Hybrid Frontend Baseline | Accepted | Records Flutter as the web, Android, and iOS frontend baseline |
 | DR-016 | AWS Cloud Provider Baseline | Accepted | Records AWS as the cloud provider baseline |
 | DR-017 | Modular Monolith Baseline | Accepted | Records modular monolith as the initial backend architecture style |
+| DR-018 | Engineering Foundation Runtime | Accepted | Records logging, IDs, UoW, pool, and deferred Redis/S3/Celery/JWT wiring |
+| DR-019 | Access, Mobile Persona, and Commerce Architecture | Accepted | Records roles, Phase-1 personas, SaaS vs facility commerce (v2.0: Site Admin; no Manager role) |
 
 ---
 

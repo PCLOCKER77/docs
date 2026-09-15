@@ -143,7 +143,11 @@ Digitize requires controlled staff access across Organization, Facility, and Sit
 
 Authenticated staff-management endpoints require JWT. Credential reset APIs require additional security validation, audit, and may require re-authentication or elevated permission.
 
-Login and refresh endpoints are `TBD — Owner: Security Architecture; Action: supply authentication FR and endpoint IDs (login/refresh) or confirm delegated auth.` because FR-06 covers staff/user management rather than a dedicated authentication FRS section.
+Login and refresh endpoints are **not** in this collection. The
+authoritative Authentication contract is
+`docs/architecture/AUTH_CONTRACT_FREEZE.md`
+(`POST /api/v1/auth/login`, `/refresh`, `/logout`, `/password-reset`).
+Those paths are outside the API-03 numbered inventory and outside the 222.
 
 ---
 
@@ -441,7 +445,9 @@ Required coverage: staff create/update, duplicate login, role assignment, permis
 
 # 43. Assumptions and Constraints
 
-[OWNER ACTION REQUIRED — Security/Identity owners: provide login/refresh endpoint mapping or confirm external provider mapping; CHG API-CHG-0011]
+[OWNER ACTION REQUIRED — closed for Phase-1 HTTP paths: see
+`docs/architecture/AUTH_CONTRACT_FREEZE.md`. CHG API-CHG-0011 remains
+historical.]
 - MFA implementation is future-ready but not current endpoint scope.
 - UI screen IDs are unavailable.
 - Outbox table mapping is `integration.outbox_event`.

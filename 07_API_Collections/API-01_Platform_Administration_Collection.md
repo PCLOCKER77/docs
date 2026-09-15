@@ -256,16 +256,21 @@ HTTP `204 No Content` shall not include a response body.
 
 # 16. Module Error Codes
 
+Live application codes (authoritative: `app/api/error_codes.py`):
+
 | Error Code | HTTP Status | Category | Safe Message | Retryable |
 |---|---|---|---|---|
-| PLATFORM_AUTHORIZATION_001 | 403 | Authorization | User is not authorized to perform this platform administration action. | No |
-| PLATFORM_VALIDATION_001 | 422 | Validation | Platform administration request validation failed. | No |
-| PLATFORM_CONFLICT_001 | 409 | Conflict | The requested platform change conflicts with the current resource state. | No |
-| PLATFORM_CONCURRENCY_001 | 412 | Conflict | The resource was changed by another user. Refresh and retry. | Yes |
-| PLATFORM_IDEMPOTENCY_001 | 409 | Conflict | The idempotency key was previously used with a different request. | No |
-| PLATFORM_NOT_FOUND_001 | 404 | NotFound | The requested platform resource is unavailable. | No |
-| PLATFORM_HEALTH_001 | 503 | ServiceUnavailable | Platform health information is temporarily unavailable. | Yes |
-| PLATFORM_REPORT_001 | 422 | Validation | The requested platform report parameters are invalid. | No |
+| AUTHORIZATION_DENIED | 403 | Authorization | User is not authorized to perform this platform administration action. | No |
+| VALIDATION_FAILED | 422 | Validation | Platform administration request validation failed. | No |
+| PLATFORM_ALREADY_EXISTS | 409 | Conflict | The requested platform change conflicts with the current resource state. | No |
+| CONCURRENCY_CONFLICT | 412 | Conflict | The resource was changed by another user. Refresh and retry. | Yes |
+| RESOURCE_CONFLICT | 409 | Conflict | Unique or idempotent request conflict. | No |
+| PLATFORM_NOT_FOUND | 404 | NotFound | The requested platform resource is unavailable. | No |
+| SERVICE_UNAVAILABLE | 503 | ServiceUnavailable | Platform health information is temporarily unavailable. | Yes |
+| PLATFORM_INVALID | 422 | Validation | The requested platform report parameters are invalid. | No |
+| AUTHENTICATION_FAILED | 401 | Authentication | Authentication is required. | No |
+| RATE_LIMIT_EXCEEDED | 429 | RateLimit | Too many attempts. Try again later. | Yes |
+| INTERNAL_ERROR | 500 | System | An unexpected error occurred. | No |
 
 ---
 
@@ -591,9 +596,9 @@ X-Correlation-ID: 7dc36db8-7f22-4d0e-9a42-a20756917b49
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 401 | AUTH_AUTHENTICATION_001 | Missing or invalid JWT | Re-authenticate | Yes |
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing permission | Request access | No |
-| 422 | PLATFORM_VALIDATION_001 | Invalid filters | Correct request | No |
+| 401 | AUTHENTICATION_FAILED | Missing or invalid JWT | Re-authenticate | Yes |
+| 403 | AUTHORIZATION_DENIED | Missing permission | Request access | No |
+| 422 | VALIDATION_FAILED | Invalid filters | Correct request | No |
 
 ### 16. Validation Rules
 
@@ -830,12 +835,12 @@ Not Applicable — This endpoint has no query parameters.
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 401 | AUTH_AUTHENTICATION_001 | Missing or invalid JWT | Re-authenticate | Yes |
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing update permission | Request access | No |
-| 404 | PLATFORM_NOT_FOUND_001 | Setting unavailable | Refresh screen | No |
-| 409 | PLATFORM_CONFLICT_001 | Setting immutable or conflicting | Review setting state | No |
-| 412 | PLATFORM_CONCURRENCY_001 | Stale ETag | Refresh and retry | Yes |
-| 422 | PLATFORM_VALIDATION_001 | Invalid payload | Correct request | No |
+| 401 | AUTHENTICATION_FAILED | Missing or invalid JWT | Re-authenticate | Yes |
+| 403 | AUTHORIZATION_DENIED | Missing update permission | Request access | No |
+| 404 | PLATFORM_NOT_FOUND | Setting unavailable | Refresh screen | No |
+| 409 | RESOURCE_CONFLICT | Setting immutable or conflicting | Review setting state | No |
+| 412 | CONCURRENCY_CONFLICT | Stale ETag | Refresh and retry | Yes |
+| 422 | VALIDATION_FAILED | Invalid payload | Correct request | No |
 
 ### 16. Validation Rules
 
@@ -1080,9 +1085,9 @@ X-Correlation-ID: 7dc36db8-7f22-4d0e-9a42-a20756917b49
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 401 | AUTH_AUTHENTICATION_001 | Missing or invalid JWT | Re-authenticate | Yes |
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing permission | Request access | No |
-| 422 | PLATFORM_VALIDATION_001 | Invalid filters | Correct request | No |
+| 401 | AUTHENTICATION_FAILED | Missing or invalid JWT | Re-authenticate | Yes |
+| 403 | AUTHORIZATION_DENIED | Missing permission | Request access | No |
+| 422 | VALIDATION_FAILED | Invalid filters | Correct request | No |
 
 ### 16. Validation Rules
 
@@ -1303,10 +1308,10 @@ Not Applicable — This endpoint has no query parameters.
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 401 | AUTH_AUTHENTICATION_001 | Missing or invalid JWT | Re-authenticate | Yes |
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing create permission | Request access | No |
-| 409 | PLATFORM_CONFLICT_001 | Duplicate group/code | Use unique code | No |
-| 422 | PLATFORM_VALIDATION_001 | Invalid payload | Correct request | No |
+| 401 | AUTHENTICATION_FAILED | Missing or invalid JWT | Re-authenticate | Yes |
+| 403 | AUTHORIZATION_DENIED | Missing create permission | Request access | No |
+| 409 | RESOURCE_CONFLICT | Duplicate group/code | Use unique code | No |
+| 422 | VALIDATION_FAILED | Invalid payload | Correct request | No |
 
 ### 16. Validation Rules
 
@@ -1541,11 +1546,11 @@ Not Applicable — This endpoint has no query parameters.
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing permission | Request access | No |
-| 404 | PLATFORM_NOT_FOUND_001 | Record unavailable | Refresh list | No |
-| 409 | PLATFORM_CONFLICT_001 | Dependency blocks deactivation | Review dependencies | No |
-| 412 | PLATFORM_CONCURRENCY_001 | Stale ETag | Refresh and retry | Yes |
-| 422 | PLATFORM_VALIDATION_001 | Invalid payload | Correct request | No |
+| 403 | AUTHORIZATION_DENIED | Missing permission | Request access | No |
+| 404 | PLATFORM_NOT_FOUND | Record unavailable | Refresh list | No |
+| 409 | RESOURCE_CONFLICT | Dependency blocks deactivation | Review dependencies | No |
+| 412 | CONCURRENCY_CONFLICT | Stale ETag | Refresh and retry | Yes |
+| 422 | VALIDATION_FAILED | Invalid payload | Correct request | No |
 
 ### 16. Validation Rules
 
@@ -1785,11 +1790,11 @@ Not Applicable — This endpoint has no query parameters.
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing permission | Request access | No |
-| 404 | PLATFORM_NOT_FOUND_001 | Feature unavailable | Refresh list | No |
-| 409 | PLATFORM_CONFLICT_001 | Scope conflict | Review scope | No |
-| 412 | PLATFORM_CONCURRENCY_001 | Stale ETag | Refresh and retry | Yes |
-| 422 | PLATFORM_VALIDATION_001 | Invalid rollout | Correct payload | No |
+| 403 | AUTHORIZATION_DENIED | Missing permission | Request access | No |
+| 404 | PLATFORM_NOT_FOUND | Feature unavailable | Refresh list | No |
+| 409 | RESOURCE_CONFLICT | Scope conflict | Review scope | No |
+| 412 | CONCURRENCY_CONFLICT | Stale ETag | Refresh and retry | Yes |
+| 422 | VALIDATION_FAILED | Invalid rollout | Correct payload | No |
 
 ### 16. Validation Rules
 
@@ -2035,9 +2040,9 @@ Not Applicable — This endpoint has no query parameters.
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing schedule permission | Request access | No |
-| 409 | PLATFORM_IDEMPOTENCY_001 | Idempotency conflict | Use correct key | No |
-| 422 | PLATFORM_VALIDATION_001 | Invalid dates or services | Correct payload | No |
+| 403 | AUTHORIZATION_DENIED | Missing schedule permission | Request access | No |
+| 409 | RESOURCE_CONFLICT | Idempotency conflict | Use correct key | No |
+| 422 | VALIDATION_FAILED | Invalid dates or services | Correct payload | No |
 
 ### 16. Validation Rules
 
@@ -2270,10 +2275,10 @@ Not Applicable — This endpoint has no query parameters.
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing publish permission | Request access | No |
-| 404 | PLATFORM_NOT_FOUND_001 | Release unavailable | Refresh list | No |
-| 409 | PLATFORM_CONFLICT_001 | Release state invalid | Review release state | No |
-| 412 | PLATFORM_CONCURRENCY_001 | Stale ETag | Refresh and retry | Yes |
+| 403 | AUTHORIZATION_DENIED | Missing publish permission | Request access | No |
+| 404 | PLATFORM_NOT_FOUND | Release unavailable | Refresh list | No |
+| 409 | RESOURCE_CONFLICT | Release state invalid | Review release state | No |
+| 412 | CONCURRENCY_CONFLICT | Stale ETag | Refresh and retry | Yes |
 
 ### 16. Validation Rules
 
@@ -2498,9 +2503,9 @@ X-Correlation-ID: 7dc36db8-7f22-4d0e-9a42-a20756917b49
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing permission | Request access | No |
-| 503 | PLATFORM_HEALTH_001 | Monitoring unavailable | Retry later | Yes |
-| 422 | PLATFORM_VALIDATION_001 | Invalid service filter | Correct request | No |
+| 403 | AUTHORIZATION_DENIED | Missing permission | Request access | No |
+| 503 | SERVICE_UNAVAILABLE | Monitoring unavailable | Retry later | Yes |
+| 422 | VALIDATION_FAILED | Invalid service filter | Correct request | No |
 
 ### 16. Validation Rules
 
@@ -2730,11 +2735,11 @@ Not Applicable — This endpoint has no query parameters.
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing security permission | Request access | No |
-| 404 | PLATFORM_NOT_FOUND_001 | Policy unavailable | Refresh list | No |
-| 409 | PLATFORM_CONFLICT_001 | Policy lifecycle conflict | Review policy state | No |
-| 412 | PLATFORM_CONCURRENCY_001 | Stale ETag | Refresh and retry | Yes |
-| 422 | PLATFORM_VALIDATION_001 | Invalid policy payload | Correct request | No |
+| 403 | AUTHORIZATION_DENIED | Missing security permission | Request access | No |
+| 404 | PLATFORM_NOT_FOUND | Policy unavailable | Refresh list | No |
+| 409 | RESOURCE_CONFLICT | Policy lifecycle conflict | Review policy state | No |
+| 412 | CONCURRENCY_CONFLICT | Stale ETag | Refresh and retry | Yes |
+| 422 | VALIDATION_FAILED | Invalid policy payload | Correct request | No |
 
 ### 16. Validation Rules
 
@@ -2973,11 +2978,11 @@ Not Applicable — This endpoint has no query parameters.
 
 | HTTP Status | Error Code | Condition | Consumer Action | Retry Behavior |
 |---|---|---|---|---|
-| 403 | PLATFORM_AUTHORIZATION_001 | Missing report permission | Request access | No |
-| 404 | PLATFORM_NOT_FOUND_001 | Report definition unavailable | Refresh list | No |
-| 409 | PLATFORM_IDEMPOTENCY_001 | Idempotency conflict | Use correct key | No |
-| 422 | PLATFORM_REPORT_001 | Invalid report parameters | Correct request | No |
-| 429 | PLATFORM_VALIDATION_001 | Rate limit exceeded | Retry after header | Yes |
+| 403 | AUTHORIZATION_DENIED | Missing report permission | Request access | No |
+| 404 | PLATFORM_NOT_FOUND | Report definition unavailable | Refresh list | No |
+| 409 | RESOURCE_CONFLICT | Idempotency conflict | Use correct key | No |
+| 422 | PLATFORM_INVALID | Invalid report parameters | Correct request | No |
+| 429 | RATE_LIMIT_EXCEEDED | Rate limit exceeded | Retry after header | Yes |
 
 ### 16. Validation Rules
 
