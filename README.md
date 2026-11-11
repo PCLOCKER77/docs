@@ -107,7 +107,25 @@ Before a folder is frozen:
 
 ---
 
-# 6. Summary
+# 6. Working implementation trackers (2026)
+
+Cross-project completion, QA readiness, and pending product/migration proposals (distinct from accepted Decision Records in `99_Decision_Records/`):
+
+| Document | Role |
+|---|---|
+| [`16_Development_Readiness/DEV-19_Feature_Completion_Tracker.md`](16_Development_Readiness/DEV-19_Feature_Completion_Tracker.md) | Authoritative feature / numbered-API completion tracker |
+| [`12_Testing/TEST-12_Engineering_Quality_QA_Readiness_Review_2026-11-02.md`](12_Testing/TEST-12_Engineering_Quality_QA_Readiness_Review_2026-11-02.md) | Engineering quality / QA readiness findings |
+| [`12_Testing/TEST-13_EQ011_digitize_test_Migration_Authorization.md`](12_Testing/TEST-13_EQ011_digitize_test_Migration_Authorization.md) | EQ-011 `digitize_test` migration authorization **proposal** |
+| [`architecture/API-08_FACILITY_BILLING_DECISION_REGISTER.md`](architecture/API-08_FACILITY_BILLING_DECISION_REGISTER.md) | Facility billing skeleton decision register |
+| [`architecture/API-13_AUDIT_PRODUCT_DECISION.md`](architecture/API-13_AUDIT_PRODUCT_DECISION.md) | API-13 audit product recommendation |
+| [`architecture/API-14_REFERENCE_SOURCE_OF_TRUTH.md`](architecture/API-14_REFERENCE_SOURCE_OF_TRUTH.md) | API-14 reference source-of-truth recommendation |
+| [`07_API_Collections/API-12_008_Escalate_Migration_Proposal.md`](07_API_Collections/API-12_008_Escalate_Migration_Proposal.md) | API-12-008 escalate migration **proposal** |
+
+Machine-readable API inventory and contracts remain in `digitize-services` (`app/api/contracts/catalog.py`) with the architecture registry at [`architecture/API_CONTRACT_REGISTRY.md`](architecture/API_CONTRACT_REGISTRY.md).
+
+---
+
+# 7. Summary
 
 This documentation tree is the enterprise knowledge base for the Digitize platform.
 

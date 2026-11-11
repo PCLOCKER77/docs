@@ -12,7 +12,7 @@
 API-09 SUBSCRIPTION / LICENSE IMPLEMENTATION GATE: PASS
 ```
 
-Backend-only. Flutter was not modified. Authentication HTTP and JWT claims were not modified. Option E commercial enforcement is not implemented. API-08 was not implemented. Deferred API-09 operations remain unregistered.
+Backend-only at original gate date (2026-09-12). **2026-11-04 / 2026-11-09 metadata refresh (GAP-API09-004):** numbered subscription/license lifecycle including `GET /api/v1/subscriptions/reports` and `GET /api/v1/licenses/reports` are **implemented** in `IMPLEMENTED_NUMBERED_KEYS` and wired in `digitize-ui/lib/features/saas_subscription_admin` (`RemoteSubscriptionAdminRepository`). Catalog `frontend_status` for API-09 is **PARTIAL** per `numbered_product_contracts.py`; live provider QA remains **GAP-API09-003**.
 
 ---
 
@@ -58,10 +58,10 @@ Unregistered. No placeholder handlers. No fake 200s.
 | API-09-005 | `POST /api/v1/subscriptions/{subscription_id}/upgrade` |
 | API-09-006 | `POST /api/v1/subscriptions/{subscription_id}/downgrade` |
 | API-09-010 | `POST /api/v1/subscriptions/{subscription_id}/renewal-invoices` |
-| API-09-012 | `GET /api/v1/subscriptions/reports` |
 | API-09-016 | `POST /api/v1/licenses/{license_id}/renew` |
 | API-09-023 | `GET /api/v1/licenses/{license_id}/history` |
-| API-09-024 | `GET /api/v1/licenses/reports` |
+
+**Implemented since original gate (not in deferred table above):** API-09-004 renew, 005 upgrade, 006 downgrade, 010 renewal-invoices, 012 subscription reports, 016 license renew, 023 license history, 024 license reports — see `IMPLEMENTED_NUMBERED_KEYS` in `numbered_product_contracts.py`.
 
 Also deferred (not solved in this slice): Option E enforcement date, SaaS renewal billing, site add-on licensing, customer membership plans, notification/campaign infrastructure, BR-SUB-006 payment-before-activation.
 

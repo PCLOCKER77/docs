@@ -610,3 +610,118 @@ This freeze does **not**:
 
 API-01 Platform Admin remains the next product vertical after the
 Authentication security gate.
+
+---
+
+## Addendum — Phase 1B credential lifecycle (not a full AUTH freeze)
+
+This addendum is **implemented in backend** and is **not** a claim that
+Authentication & Authorization is frozen overall. MFA, SSO, logout-all,
+Flutter routing, and remaining audit gaps stay deferred.
+
+### AUTH-PASSWORD-CHANGE-001
+
+`POST /api/v1/auth/password-change` (authenticated). JSON:
+
+```json
+{ "current_password": "string", "new_password": "string" }
+```
+
+Success `data`: `{ "password_updated": true, "reauthenticate": true }`.
+All sessions for the account are revoked (including the current refresh
+cookie, which is cleared). The client must sign in again.
+
+The operation changes **only the caller’s** password.
+
+### First-login / temporary credentials
+
+Provisioning (staff create, staff activate when no hash exists, org-admin
+create, platform-admin bootstrap) sets `password_must_change`. Platform Admin
+bootstrap generates a temporary password, hashes it (Argon2id + pepper), and
+emails it via the outbox. The operator CLI does not collect an account
+password. Temporary passwords are never printed or returned in API JSON.
+
+`credential_expires_at` invalidates unused temporary credentials.
+Expired temporary credentials fail login with generic
+`AUTHENTICATION_FAILED`.
+
+Login still issues an access JWT and refresh cookie when the temporary
+credential is valid. The envelope includes
+`password_change_required: true`. Product APIs that use
+`require_authenticated` then return **403** `PASSWORD_CHANGE_REQUIRED`
+until `POST /api/v1/auth/password-change` succeeds. Logout remains
+idempotent without that restriction. Refresh of an expired temporary
+credential is rejected.
+
+### Recovery email
+
+`POST /api/v1/auth/password-reset` remains non-enumerating 202. A hashed
+reset token is stored; the raw token is sent only through EmailService
+(outbox after commit). Production responses never include the token.
+`auth_test_recovery_tokens` remains a non-production test hook.
+
+Admin `POST /api/v1/identity/users/{user_id}/credential-reset` queues
+`admin_credential_reset` mail the same way and does not set a password.
+
+### Email providers
+
+`EMAIL_PROVIDER` empty: `file` in development, `memory` when
+`ENVIRONMENT=test` (QA isolation), `smtp` when production-like.
+Production-like startup requires `EMAIL_FROM` and, for smtp, `SMTP_HOST`.
+`identity.user_emails` is not a mailer.
+
+### Flutter (future)
+
+- If login `password_change_required` is true, route only to password-change
+  (and logout). Do not treat client routing as authorization.
+- After password-change, treat `reauthenticate: true` as a hard re-login.
+- Recovery confirm remains `POST /api/v1/auth/password-reset/confirm`.
+- Do not persist temporary or current passwords.
+
+---
+
+## Addendum — Phase 1C (logout-all, recovery recipient, catalog integrity)
+
+Implemented in backend. Authentication & Authorization is **not** fully frozen.
+
+### AUTH-LOGOUT-ALL
+
+`POST /api/v1/auth/logout-all` (authenticated). Extra identifier
+`AUTH-LOGOUT-ALL` is **not** a numbered product API and is **not** another
+`*-001` AUTH copy.
+
+Revokes every `user_session` row for the authenticated principal using the
+existing `revoke_active_sessions` primitive (AUTH-05). The invoking JWT
+succeeds for this request; subsequent product calls fail AUTH-05 session
+checks. Refresh cookies for those sessions fail. Other accounts are
+untouched. Audit action `SESSIONS_LOGOUT_ALL` is written in the same
+transaction. Repeat with a revoked JWT is `401`. A later login can call
+logout-all again.
+
+Allowed during `password_must_change` (along with password-change).
+
+### AUTH-09 recovery recipient
+
+`POST /api/v1/auth/password-reset` remains non-enumerating 202.
+
+A recovery outbox message is queued only when the submitted login identifier
+is an email-shaped identifier and matches an eligible account. Username-like
+identifiers never receive mail and do not create a reset token. Responses
+do not distinguish known/unknown/non-email cases.
+
+`identity.user_emails` remains CRM identity data, not the mailer.
+Admin credential-reset is unchanged: hashed token, outbox, no password in JSON.
+
+### Catalog integrity
+
+Official numbered product count remains **228**. AUTH routes stay extras.
+Existing numbered IDs were not renumbered. `validate_catalog()` now rejects
+duplicate extra `api_id`s, extras that look like `API-XX-NNN`, and numbered
+entries on `/api/v1/auth/*`.
+
+Historical AUTH extras (`AUTH-LOGIN-001`, …) are unchanged identifiers.
+New AUTH extras must not restart at `001` by copying that pattern.
+
+MFA and SSO are intentionally outside the current authentication scope and
+are deferred to a future product phase.
+

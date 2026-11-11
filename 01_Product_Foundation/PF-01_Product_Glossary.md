@@ -486,9 +486,11 @@ A new customer purchases Digitize by OreeOn.
 The Platform Admin:
 
 * Creates the organization.
-* Assigns the subscription.
-* Activates the account.
-* Provides login credentials to the Organization Admin.
+* Provisions the initial Organization Admin (credentials emailed per environment policy — temporary password locally / setup link in QA and Production; PA never enters an OA password).
+* Does **not** act as a tenant-data superuser and cannot decrypt Organization business data.
+* Approves initial Organization detail changes **only when** the Organization Admin changes them during onboarding; otherwise the Organization activates after OA Terms & Conditions acceptance with no initial changes.
+
+See DR-021 / `ORGANIZATION_ONBOARDING_PA_BOUNDARY_FREEZE.md`.
 
 ---
 

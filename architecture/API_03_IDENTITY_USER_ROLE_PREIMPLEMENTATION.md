@@ -225,7 +225,7 @@ API-03 must use these.
 Do not import these from API-03. Do not “align” them in this gate. Leave unrelated scaffold untouched until the implementation task retires HTTP `/users`.
 
 - `app/modules/users/models/**` (`identity.users`, `identity.roles`, `identity.sessions`, …)
-- `app/modules/users/routes.py`, `service.py`, `repository.py`, `schemas.py`
+- ~~`app/modules/users/`~~ **Removed** (GAP-API03-005); use `app/modules/identity/` only.
 - `app/modules/staff/models/**` (`identity.staff` and FKs to `identity.users`)
 - `app/core/tenant_context.py` (broken / unused; `get_tenant_context` in `deps.py` is the parser)
 - Collection OpenAPI YAML

@@ -522,6 +522,13 @@ Organizations may exist in one of the following states:
 * Suspended
 * Archived
 
+**Onboarding (DR-021):** Platform Admin creates Organizations in **Pending** and provisions the initial Organization Admin. Organization Admin credentials are provisioned using a temporary password in local/development (Mailpit) or a secure credential setup link in QA/Production. After OA credential setup and Terms & Conditions acceptance:
+
+* No initial Organization detail changes → Organization becomes **Active** automatically.
+* Initial Organization detail changes → remains **Pending** until Platform Admin approves (or rejects for OA correction).
+
+Once **Active**, normal Organization Admin changes do **not** require Platform Admin approval. Soft-delete (archive/restore) is separate from `business_status`.
+
 Priority: **High**
 
 ---
@@ -1056,7 +1063,7 @@ Priority: **Critical**
 
 ## BR-TRN-002 — Trainer Assignment
 
-Trainers may be assigned to one or more Facilities or Sites.
+Trainers may be assigned to one or more Facilities or Sites within the same Organization. Cross-organization trainer sharing is not supported in the current release.
 
 Priority: **Medium**
 
@@ -1074,6 +1081,8 @@ Priority: **Critical**
 
 Every scheduled batch shall have at least one assigned trainer.
 
+**Enforcement (v1):** `schedule_batch` resolves an effective trainer from the request `trainer_id` or the active batch trainer assignment, rejects scheduling when none exists, requires the trainer to be active and organization-aligned, and persists the resolved trainer on the class session. Batch creation and configuration without a schedule remain unchanged.
+
 Priority: **High**
 
 ---
@@ -1081,6 +1090,8 @@ Priority: **High**
 ## BR-TRN-005 — Trainer Availability
 
 Trainer availability shall be maintained before scheduling sessions.
+
+**Enforcement (v1):** Scheduling writes (`schedule_batch`, book/reschedule/assign personal training session) require the full session interval `[starts_at, ends_at)` to be covered by the union of persisted `AVAILABLE` rows in `training.trainer_availability` for that trainer (half-open merge on overlap or adjacency). `UNAVAILABLE` rows and absent coverage reject with HTTP 422 validation. This check runs before BR-TRN-008 conflict detection; schedule conflict overrides do not bypass availability.
 
 Priority: **High**
 
@@ -1109,7 +1120,15 @@ Priority: **Medium**
 
 ## BR-TRN-008 — Trainer Schedule Conflicts
 
-Digitize shall prevent trainers from being assigned to overlapping sessions unless explicitly overridden by authorized personnel.
+Digitize shall detect overlapping class and personal training sessions for the same trainer within an organization (half-open interval overlap; cancelled sessions excluded).
+
+Scheduling writes that assign a trainer to a time window shall be rejected when C1–C3 conflicts exist unless an authorized actor supplies a valid override declaration: a trimmed reason of 10–500 characters and an acknowledgment that exactly matches the server-recomputed conflicts.
+
+Organization Administrators may override within authorized organization and facility/site scope. Staff may override only when granted `override.trainer.schedule.conflicts` and the permission for the underlying write operation. Overrides must not bypass organization ownership, facility/site authorization, operational eligibility, trainer lifecycle status, or other integrity constraints.
+
+Each successful override shall emit audit action `OVERRIDE_TRAINER_SCHEDULE_CONFLICT`. Validate-only conflict checks remain available via API-07-004 and audit as `VALIDATE_TRAINER_SCHEDULE_CONFLICTS`.
+
+A second-approver approval workflow is deferred to a future product decision.
 
 Priority: **High**
 

@@ -15,7 +15,7 @@
 **Owner:** API Architecture  
 **Reviewer:** Solution Architecture / Security Architecture / Backend Engineering  
 **Dependencies:** API-00, API-02, API-03, API-04, API-06, FR-11, FR-12, FR-13, BA-03, BA-04, DB-11  
-**Last Updated:** 2026-07-26
+**Last Updated:** 2026-10-30
 
 ---
 
@@ -413,6 +413,11 @@ Required coverage includes authentication, authorization, tenant isolation, vali
 
 # 33. Assumptions and Constraints
 
+- **Trainer organization ownership (current release):** Each trainer belongs to exactly one organization. Trainers may hold multiple facility and site assignments, but only for facilities and sites within that same organization. Batch assignments, class sessions, personal training sessions, attendance, and schedule-conflict validation must keep trainer, batch, activity, facility, site, and session records aligned to one organization. Cross-organization trainer sharing, shared trainer identities, and global trainer directories are out of scope for this release; backend authorization and ownership checks are authoritative (client-side filtering is not a security boundary).
+- **BR-TRN-004 (class scheduling):** `schedule_batch` requires an effective trainer (explicit `trainer_id` or active batch trainer assignment), active status, and organization alignment before creating a class session. Scheduling without a resolvable trainer is rejected with validation error.
+- **BR-TRN-005 (availability):** Class and personal training scheduling writes validate that the session interval is fully covered by merged `AVAILABLE` trainer availability windows (explicit DB rows only; no recurrence expansion). Runs before BR-TRN-008; conflict overrides cannot bypass availability.
+- **BR-TRN-008 schedule conflicts (v1):** Server-enforced C1–C3 trainer overlap on schedule batch (when `trainer_id` is set), book personal training session, reschedule personal training session, and assign trainer to personal training session. Optional request field `schedule_conflict_override` carries `reason` (10–500 characters trimmed) and `acknowledged_conflicts` (exact match to server-recomputed conflicts). Deny with HTTP 409, application code `TRAINER_SCHEDULE_CONFLICT`, catalog reference `TRAINER_CONFLICT_001`, and conflict details when no valid override. Permission `override.trainer.schedule.conflicts` for Staff; Organization Admin override is implicit via role. Audit `OVERRIDE_TRAINER_SCHEDULE_CONFLICT` on successful overridden writes. **Schedule batch:** when `trainer_id` is omitted, the effective trainer is resolved from the active batch trainer assignment for conflict enforcement and class session `trainer_id` population; unassigned batches cannot be scheduled (BR-TRN-004). Assign trainer to batch without a session window is out of scope for conflict enforcement.
+- **Scheduling concurrency (v1):** Transaction-scoped PostgreSQL advisory locks per trainer before availability and conflict checks on class schedule and PTR book/reschedule/assign paths. See `API-07_Acceptance_Evidence.md` for test evidence and opt-in PostgreSQL verification.
 - UI screen IDs are unavailable.
 - Outbox table mapping is `integration.outbox_event`.
 - Source mappings marked `TBD — Owner: API Architecture / BA; Action: provide event/table/test IDs for trainer/activity/batch.` require future BA/FR/API review.
@@ -434,6 +439,7 @@ Required coverage includes authentication, authorization, tenant isolation, vali
 
 # 35. Future Enhancements
 
+- Cross-organization trainer sharing or federated trainer directories, if approved as a later capability.
 - Additional query projections after UI screen IDs are finalized.
 - Dedicated export status endpoint where report volume requires asynchronous processing.
 - Webhook publication where external integration use cases are approved.

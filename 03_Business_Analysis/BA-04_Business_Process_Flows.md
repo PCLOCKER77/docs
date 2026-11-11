@@ -749,9 +749,11 @@ Platform Admin      System        Audit
 
 ## 6.1 Purpose
 
-The Organization Onboarding Flow governs the complete lifecycle of registering a new customer organization onto the Digitize platform.
+The Organization Onboarding Flow governs registering a new customer organization onto the Digitize platform (DR-021).
 
-This process establishes the commercial and operational relationship between the Organization and the Platform by creating the organization, configuring its subscription, generating licenses, and enabling the organization to begin operations.
+Platform Admin creates the Organization (`business_status = Pending`) and provisions the initial Organization Admin. Organization Admin credentials are environment-specific: local/development uses a temporary password delivered through the configured development email provider (normally Mailpit); QA and Production use a secure, single-use, short-lived credential setup link so the Organization Admin establishes their own permanent password (temporary passwords are never sent in QA or Production). The Organization Admin then reviews Organization details and accepts Terms & Conditions. The Organization becomes Active automatically when no initial changes are made; otherwise Platform Admin reviews and approves or rejects those initial changes only. Once Active, ordinary Organization Admin operations do not require Platform Admin approval.
+
+> **Status vocabulary:** Use **Pending** (not Draft) for initial `business_status`. Soft-delete archive is independent of business status.
 
 ---
 

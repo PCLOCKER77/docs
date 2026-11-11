@@ -57,7 +57,7 @@ Implementation/migration      010_api01_platform_admin, 011_api02_org_facility_s
 | `COLLECTION_META`, `NUMBERED_OPERATIONS`, `NUMBERED_COUNT`, `IMPLEMENTED_NUMBERED_KEYS` | API inventory metadata |
 | `API01_PATHS`, `API02_PATHS` in live contract tests | Explicit API-inventory path fixtures |
 | `test_api01_requires_authentication` and siblings | Explicit API-01 contract tests |
-| `test_011_api02_*`, `test_010_api01_*` | Tests of frozen migration identity |
+| `test_011_organization_facility_site_migration.py`, `test_010_platform_administration_migration.py` | Tests of frozen migration identity |
 | `OrganizationService`, `FacilityService`, `OrganizationRepository`, `FacilityRepository`, `SiteRepository` | Already semantic |
 | `OrganizationCreate`, `FacilityUpdate`, `SiteActivate`, … | Already semantic |
 | `Principal`, `require_permission`, `load_authorized_principal`, `load_platform_principal` | Already semantic |
@@ -94,7 +94,7 @@ Category:  Authorization
 Files:     app/modules/identity/constants.py
            tests/api/platform_auth.py
            tests/api/test_organization_facility_site.py
-           tests/migrations/test_011_api02_organization_facility_site.py
+           tests/migrations/test_011_organization_facility_site_migration.py
 ```
 
 ### C.3 `API01_AUTHORIZATION` + `API02_AUTHORIZATION` → `OPERATION_AUTHORIZATION`

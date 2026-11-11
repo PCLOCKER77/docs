@@ -185,7 +185,9 @@ When an approved source identifier is unavailable, Testing documents shall use `
 ├── TEST-08_Performance_Load_Stress_Testing.md
 ├── TEST-09_Security_Testing.md
 ├── TEST-10_UAT_Release_Validation.md
-└── TEST-11_Test_Completion_and_Release_Readiness.md
+├── TEST-11_Test_Completion_and_Release_Readiness.md
+├── TEST-12_Engineering_Quality_QA_Readiness_Review_2026-11-02.md
+└── TEST-13_EQ011_digitize_test_Migration_Authorization.md
 ```
 
 ---
@@ -207,6 +209,8 @@ When an approved source identifier is unavailable, Testing documents shall use `
 | TEST-09 | Security Testing | Frozen (provisional) | Defines authentication, authorization, tenant isolation, OWASP, vulnerability, and penetration-readiness testing |
 | TEST-10 | UAT Release Validation | Frozen (provisional) | Defines user acceptance testing, business validation, sign-off, and release-scope acceptance |
 | TEST-11 | Test Completion and Release Readiness | Frozen (provisional) | Defines test completion report, quality metrics, known risks, Go / No-Go recommendation, and release-readiness evidence |
+| TEST-12 | Engineering Quality QA Readiness Review (2026-11-02) | Working findings register | Cross-repo engineering quality / messaging / QA readiness findings; not a release Go / No-Go |
+| TEST-13 | EQ-011 digitize_test Migration Authorization | Proposal — awaiting authorization | Read-only assessed plan to upgrade local `digitize_test` for EQ-011 live verification; do not apply without approval |
 
 ---
 

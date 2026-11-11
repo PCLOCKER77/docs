@@ -47,6 +47,7 @@ The documentation repository shall track:
 | User Story Map | DEV-15 | Tracks user stories by module |
 | Traceability Matrix | DEV-16 | Tracks feature/story links to docs, tests, and release |
 | Complete User Story Catalog | DEV-18 | Tracks all FR-derived product stories and technical implementation stories before development starts |
+| Feature Completion Tracker | DEV-19 | Authoritative implementation completion status for numbered APIs and related gates (not a substitute for DEV-14 backlog) |
 | Sprint Backlog | DEV-09 | Tracks first sprint execution |
 | Gap Register | PM-06 | Tracks unresolved documentation and source-mapping gaps |
 | Code Review Checklist | DEV-10 | Tracks review expectations |

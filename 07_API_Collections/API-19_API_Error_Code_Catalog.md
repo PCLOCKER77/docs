@@ -279,7 +279,7 @@ Retry-safe automatic retries require idempotency when the operation changes stat
 | ATTENDANCE_ELIGIBILITY_001 | 409 | BUSINESS | API-06 | Attendance eligibility failure |
 | ATTENDANCE_CAPACITY_001 | 409 | BUSINESS | API-06 | Capacity rule failure |
 | TRAINING_ELIGIBILITY_001 | 409 | BUSINESS | API-07 | Training eligibility failure |
-| TRAINER_CONFLICT_001 | 409 | BUSINESS | API-07 | Trainer schedule conflict |
+| TRAINER_CONFLICT_001 | 409 | BUSINESS | API-07 | Trainer schedule conflict (application code `TRAINER_SCHEDULE_CONFLICT`) |
 | BILLING_VALIDATION_001 | 422 | VALIDATION | API-08 | Billing request validation |
 | PAYMENT_PROVIDER_001 | 502 | PROVIDER | API-08 | Payment provider failure |
 | SUBSCRIPTION_LIFECYCLE_001 | 409 | BUSINESS | API-09 | Subscription lifecycle conflict |

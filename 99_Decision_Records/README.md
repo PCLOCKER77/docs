@@ -116,8 +116,13 @@ This folder provides detailed cross-folder records for decisions that need durab
 ├── DR-016_AWS_Cloud_Provider_Baseline.md
 ├── DR-017_Modular_Monolith_Baseline.md
 ├── DR-018_Engineering_Foundation_Runtime.md
-└── DR-019_Access_Mobile_Commerce_Architecture.md
+├── DR-019_Access_Mobile_Commerce_Architecture.md
+├── DR-020_API-05_Membership_Plan_and_Membership_Scope.md
+├── DR-021_Organization_Onboarding_PA_Boundary.md
+└── DR-023_Company_Branch_Site_Facility_Hierarchy.md
 ```
+
+DR-022 is reserved outside this folder for Customer Data Protection + Customer Module (`docs/architecture/DR-022_TRANSITION_FROM_DR-021.md`) and is not issued here.
 
 ---
 
@@ -147,6 +152,10 @@ This folder provides detailed cross-folder records for decisions that need durab
 | DR-017 | Modular Monolith Baseline | Accepted | Records modular monolith as the initial backend architecture style |
 | DR-018 | Engineering Foundation Runtime | Accepted | Records logging, IDs, UoW, pool, and deferred Redis/S3/Celery/JWT wiring |
 | DR-019 | Access, Mobile Persona, and Commerce Architecture | Accepted | Records roles, Phase-1 personas, SaaS vs facility commerce (v2.0: Site Admin; no Manager role) |
+| DR-020 | API-05 Membership Plan and Membership Scope | Accepted | Option C; Slice 1 = 12 membership ops; plan status DRAFT/ACTIVE/ARCHIVED; 228 unchanged |
+| DR-021 | Organization Onboarding and PA Boundary | Implementation Complete / Verification Pending | OA T&C / conditional PA approve; OA credential policy (local temp / QA+Prod setup link); PA ≠ tenant-data superuser; 228 unchanged; browser click-through pending; do not reopen |
+| DR-022 | Customer Data Protection + Customer Module | Reserved (not issued in this folder) | Reserved by `docs/architecture/DR-022_TRANSITION_FROM_DR-021.md`. Do not reuse this ID. |
+| DR-023 | Company → Branch/Site → Facility Hierarchy | Accepted | Target Company → Site/Branch → Facility → Staff; no Site/Branch Admin; facility billing unchanged. Development implementation authorized 2026-10-16. Deploy/`main` not authorized. Plan: `docs/architecture/DR-023_HIERARCHY_MIGRATION_PLAN.md`. |
 
 ---
 

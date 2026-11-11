@@ -82,7 +82,9 @@ Development Readiness sits after the documentation baseline and before implement
 ├── DEV-15_Module_User_Story_Map.md
 ├── DEV-16_Feature_Traceability_Matrix.md
 ├── DEV-17_Development_Tracking_Workflow.md
-└── DEV-18_Complete_User_Story_Catalog.md
+├── DEV-18_Complete_User_Story_Catalog.md
+├── DEV-19_Feature_Completion_Tracker.md
+└── evidence/          # IV / audit artifacts (no markdown under digitize-services/)
 ```
 
 ---
@@ -111,6 +113,7 @@ Development Readiness sits after the documentation baseline and before implement
 | DEV-16 | Feature Traceability Matrix | Design Draft | Maps features and stories to FR, API, DB, UI, testing, and release readiness |
 | DEV-17 | Development Tracking Workflow | Design Draft | Defines repo-based feature, story, task, defect, status, owner, sprint, and release tracking |
 | DEV-18 | Complete User Story Catalog | Design Draft | Defines the full FR-derived product story catalog and technical implementation stories before development starts |
+| DEV-19 | Feature Completion Tracker | Working tracker | Authoritative cross-repo completion status for the 228 numbered APIs; distinguishes implemented / tested / integration-verified / blocked / deferred / awaiting authorization |
 
 ---
 

@@ -110,7 +110,17 @@ API_Test_Cases.md
 Postman_Collection.md
 ```
 
-This folder structure is frozen. New files, removed files, renamed files, merged files, split files, reordered documents, or changed numbering require formal Architecture Review.
+This folder structure (API-00 through API-26, test cases, Postman) is frozen. New files, removed files, renamed files, merged files, split files, reordered documents, or changed numbering of that baseline require formal Architecture Review.
+
+**Supplemental implementation reports** (not part of the frozen API-00..26 numbering; do not invent new numbered product APIs):
+
+| File | Role |
+|---|---|
+| [API-12_Support_Implementation_Report.md](API-12_Support_Implementation_Report.md) | Support Center implementation / readiness checkpoint |
+| [API-12_Support_Center_Contract_Extension_Proposal.md](API-12_Support_Center_Contract_Extension_Proposal.md) | Support contract extension proposal |
+| [API-12_008_Escalate_Migration_Proposal.md](API-12_008_Escalate_Migration_Proposal.md) | API-12-008 escalate persistence migration **proposal** (awaiting authorization) |
+| API-10 phase / completion reports | Notification delivery phase evidence (see folder) |
+| [API-08_Phase1_Membership_Billing.md](API-08_Phase1_Membership_Billing.md) | Facility membership billing phase notes |
 
 ---
 

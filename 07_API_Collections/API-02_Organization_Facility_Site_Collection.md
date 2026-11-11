@@ -131,7 +131,7 @@ Organization, Facility, and Site APIs establish the operational structure used b
 | API-02-002 | PATCH | `/api/v1/organizations/{organization_id}` | Update Organization Profile | FR-ORG-002 |
 | API-02-003 | PATCH | `/api/v1/organizations/{organization_id}/settings/{setting_key}` | Configure Organization Setting | FR-ORG-003 |
 | API-02-004 | POST | `/api/v1/organizations/{organization_id}/policies` | Configure Organization Policy | FR-ORG-004 |
-| API-02-005 | POST | `/api/v1/organizations/{organization_id}/activate` | Activate Organization | FR-ORG-007 |
+| API-02-005 | POST | `/api/v1/organizations/{organization_id}/activate` | Activate Organization (PA approval for initial onboarding changes; also compatible PA activate) | FR-ORG-007 / DR-021 |
 | API-02-006 | POST | `/api/v1/organizations/{organization_id}/suspend` | Suspend Organization | FR-ORG-008 |
 | API-02-007 | POST | `/api/v1/facilities` | Create Facility | FR-FAC-001 |
 | API-02-008 | PATCH | `/api/v1/facilities/{facility_id}` | Update Facility Details | FR-FAC-002 |
@@ -375,7 +375,7 @@ Each endpoint in this section inherits API-00 Common Endpoint Documentation Temp
 | API-02-002 | Update Organization profile | `organization.profile.update` | Mutable profile fields, change_reason | 200 with Organization | `tenant.organization` UPDATE, `audit.audit_event` INSERT | ORGANIZATION_UPDATED | organization.updated | Positive, stale ETag, authorization, validation |
 | API-02-003 | Configure Organization setting | `organization.settings.update` | setting_value, effective_at, change_reason | 200 with setting | `tenant.organization_setting` UPSERT/UPDATE, `audit.audit_event` INSERT | ORGANIZATION_SETTING_UPDATED | organization.setting.updated | Schema validation, ETag, tenant isolation |
 | API-02-004 | Configure Organization policy | `organization.policies.create` | policy_code, policy_payload, effective_at | 201 with policy | `tenant.organization_policy` INSERT, `audit.audit_event` INSERT | ORGANIZATION_POLICY_CREATED | organization.policy.created | Policy validation, duplicate policy, audit |
-| API-02-005 | Activate Organization | `organization.activate` | activation_reason | 200 with active Organization | `tenant.organization` UPDATE, `audit.audit_event` INSERT | ORGANIZATION_ACTIVATED | organization.activated | State transition, idempotency, notification |
+| API-02-005 | Activate Organization (PA onboarding approval path; auto-ACTIVE via ORG-ONBOARDING-ACCEPT when no initial changes) | `organization.activate` | activation_reason | 200 with active Organization | `tenant.organization` UPDATE, `audit.audit_event` INSERT | ORGANIZATION_ACTIVATED | organization.activated | State transition, onboarding review, audit |
 | API-02-006 | Suspend Organization | `organization.suspend` | suspension_reason, effective_at | 200 with suspended Organization | `tenant.organization` UPDATE, `audit.audit_event` INSERT | ORGANIZATION_SUSPENDED | organization.suspended | Forbidden state, impact, notification |
 | API-02-007 | Create Facility under Organization | `facility.create` | facility_type_id, facility_code, facility_name, address | 201 with Facility | `tenant.facility` INSERT, `audit.audit_event` INSERT | FACILITY_CREATED | facility.created | Hierarchy, duplicate code, entitlement |
 | API-02-008 | Update Facility details | `facility.update` | Mutable facility fields, change_reason | 200 with Facility | `tenant.facility` UPDATE, `audit.audit_event` INSERT | FACILITY_UPDATED | facility.updated | Facility scope, stale ETag |

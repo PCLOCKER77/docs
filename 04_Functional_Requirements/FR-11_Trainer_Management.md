@@ -1115,7 +1115,7 @@ Trainer Schedule shall display scoped context, mandatory fields, lifecycle statu
 |---|---|---|---|
 | trn.validate.trainer.schedule.conflicts.view | System | Read | View Validate Trainer Schedule Conflicts context |
 | trn.validate.trainer.schedule.conflicts.execute | System | Execute | Execute Validate Trainer Schedule Conflicts |
-| trn.validate.trainer.schedule.conflicts.approve | Organization Administrator | Approve | Approve governed exceptions where configured |
+| trn.validate.trainer.schedule.conflicts.approve | Organization Administrator | Approve | **Deferred (not implemented in v1).** BR-TRN-008 uses reason + audit override without a second approver. |
 | trn.validate.trainer.schedule.conflicts.audit.view | Organization Administrator / Support Executive | Read | View audit trace |
 
 ### Security Considerations
@@ -1127,7 +1127,7 @@ The capability shall enforce authentication, role-based authorization, tenant is
 | Notification Event | Recipient | Channel | Trigger | Template / Content Rule |
 |---|---|---|---|---|
 | Validate Trainer Schedule Conflicts Completed | Primary actor and configured stakeholders | In-App / Email | Action completes | Include reference, status, and effective date where applicable |
-| Validate Trainer Schedule Conflicts Requires Approval | Approver | In-App | Approval rule applies | Include safe summary and requested action |
+| Validate Trainer Schedule Conflicts Requires Approval | Approver | In-App | **Deferred (not implemented in v1).** Override uses mandatory reason and `OVERRIDE_TRAINER_SCHEDULE_CONFLICT` audit per BR-TRN-008. |
 | Validate Trainer Schedule Conflicts Failed | Primary actor | In-App | Validation or processing fails | Include safe failure reason and next action |
 
 ### Business Events

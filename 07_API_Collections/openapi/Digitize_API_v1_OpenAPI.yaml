@@ -366,7 +366,7 @@ paths:
     get:
       tags: [Payments Gateway]
       summary: Get Payment Status
-      operationId: payments_get_status
+      operationId: payments_status_list
       parameters:
         - name: payment_id
           in: path

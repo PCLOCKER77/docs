@@ -1906,16 +1906,16 @@ To enable authorized Platform Administrators to activate an Organization after m
 
 ### Functional Requirement
 
-The system shall allow a Platform Administrator to activate an eligible Organization and make it operational for downstream business processes.
+The system shall allow a Platform Administrator to approve activation of a PENDING Organization when initial Organization Admin onboarding changes require platform review, and shall allow automatic activation when the Organization Admin accepts Terms & Conditions without initial profile changes (DR-021).
 
 ### Business Justification
 
-Activation protects platform governance by ensuring Organizations cannot begin operations until required onboarding and configuration controls are complete.
+Activation protects platform governance for the initial onboarding path while ensuring Platform Admin does not become a bottleneck for ordinary tenant operations after the Organization is ACTIVE.
 
 ### Actors
 
-- Platform Administrator
-- Organization Administrator
+- Platform Administrator (approval path for initial changes only)
+- Organization Administrator (Terms & Conditions acceptance; no-change auto-activation)
 - System
 - Notification Service
 - Audit Service
@@ -1924,16 +1924,14 @@ Activation protects platform governance by ensuring Organizations cannot begin o
 ### Preconditions
 
 - Organization exists in Pending status.
-- Organization profile is complete.
-- Primary Organization Administrator is assigned and active.
-- Mandatory Organization Settings are complete.
-- Required Business Policies are configured.
-- Required documents are uploaded where applicable.
-- Subscription and license prerequisites are satisfied where required.
+- Primary Organization Administrator is provisioned and has completed credential setup (temporary-password change in local/development, or secure setup-link password establishment in QA/Production) where required.
+- Terms & Conditions acceptance is recorded for auto-activation, **or** PA is approving after OA-submitted initial changes.
+- Documents are **not** mandatory for activation unless an explicit business rule requires them.
 
 ### Trigger
 
-The Platform Administrator selects Activate Organization from the Organization lifecycle action menu.
+- Organization Admin accepts Terms & Conditions with no initial changes → automatic ACTIVE; **or**
+- Platform Administrator selects Approve/Activate Organization from the pending onboarding review queue after OA initial changes.
 
 ### In Scope
 

@@ -195,6 +195,28 @@ This document is acceptable when:
 
 ---
 
+# 12a. Authentication Rate Limiting and Trusted Proxies (P0)
+
+Production-like deployments (`staging` / `production`) must configure:
+
+| Setting | Requirement |
+|---|---|
+| `RATE_LIMIT_BACKEND` | `redis` (process-local `memory` is rejected at startup) |
+| `REDIS_URL` | Private Redis endpoint (`redis://` or `rediss://` with TLS) |
+| `REDIS_CONNECT_TIMEOUT_SECONDS` / `REDIS_OPERATION_TIMEOUT_SECONDS` | Bounded timeouts |
+| `REDIS_MAX_CONNECTIONS` | Pool ceiling per process |
+| `TRUSTED_PROXY_CIDRS` | CIDRs of load balancers / reverse proxies only |
+
+**Redis isolation:** Do not expose Redis publicly. Bind to a private network, require AUTH (and ACL where available), prefer TLS (`rediss://`), and allow only application instances to connect.
+
+**Outage policy:** When `RATE_LIMIT_BACKEND=redis`, authentication and recovery refuse the request with `503 SERVICE_UNAVAILABLE` if Redis is unreachable. They never silently bypass rate-limit enforcement.
+
+**Client IP:** Only peers inside `TRUSTED_PROXY_CIDRS` may supply `X-Forwarded-For`. Untrusted peers cannot spoof client IP. Empty CIDRs (local/dev default) ignore all forwarding headers.
+
+**Keys:** Rate-limit keys hash account identifiers (SHA-256). Raw emails, passwords, and tokens must never be stored in Redis keys or audit payloads.
+
+---
+
 # 13. Freeze Rule
 
 This document shall remain `Design Draft` until `OPS-00` is reviewed and security access operations are accepted by Security and Operations.
